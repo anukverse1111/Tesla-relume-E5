@@ -342,9 +342,6 @@ a:focus-visible {
 
 #slide-2:checked ~ .slider__track { --slide: 1; }
 #slide-3:checked ~ .slider__track { --slide: 2; }
-#slide-4:checked ~ .slider__track { --slide: 3; }
-#slide-5:checked ~ .slider__track { --slide: 4; }
-#slide-6:checked ~ .slider__track { --slide: 5; }
 
 .model-card {
   border-radius: var(--radius);
@@ -411,10 +408,7 @@ a:focus-visible {
 
 #slide-1:checked ~ .slider__controls [for="slide-1"].slider__dot,
 #slide-2:checked ~ .slider__controls [for="slide-2"].slider__dot,
-#slide-3:checked ~ .slider__controls [for="slide-3"].slider__dot,
-#slide-4:checked ~ .slider__controls [for="slide-4"].slider__dot,
-#slide-5:checked ~ .slider__controls [for="slide-5"].slider__dot,
-#slide-6:checked ~ .slider__controls [for="slide-6"].slider__dot {
+#slide-3:checked ~ .slider__controls [for="slide-3"].slider__dot {
   opacity: 1;
 }
 
@@ -438,10 +432,7 @@ a:focus-visible {
 
 #slide-1:checked ~ .slider__controls .slider__arrow[data-on="1"],
 #slide-2:checked ~ .slider__controls .slider__arrow[data-on="2"],
-#slide-3:checked ~ .slider__controls .slider__arrow[data-on="3"],
-#slide-4:checked ~ .slider__controls .slider__arrow[data-on="4"],
-#slide-5:checked ~ .slider__controls .slider__arrow[data-on="5"],
-#slide-6:checked ~ .slider__controls .slider__arrow[data-on="6"] {
+#slide-3:checked ~ .slider__controls .slider__arrow[data-on="3"] {
   display: flex;
 }
 

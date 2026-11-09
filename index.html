@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tesla</title>
+  <meta name="description" content="Model 3, Model Y L Premium, Model Y загваруудтай танилцаж, туршилтын жолоодлогод цаг аваарай.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@400&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="navbar__container">
+      <div class="navbar__brand">
+        <a class="logo" href="#" aria-label="Нүүр хуудас">
+          <img src="assets/icons/logo-tesla-wordmark.svg" alt="" width="342" height="35">
+        </a>
+      </div>
+      <nav class="navbar__links" aria-label="Үндсэн цэс">
+        <a href="#models">Model 3</a>
+        <a href="#models">Model Y L Premium</a>
+        <a href="#models">Model Y</a>
+      </nav>
+      <div class="navbar__actions">
+        <a class="btn btn--primary btn--sm" href="#test-drive">Туршилтын жолоодлого</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero has-overlay">
+      <img class="cover-image" src="assets/images/hero.jpg" alt="" fetchpriority="high">
+      <div class="hero__container">
+        <div class="hero__content">
+          <h1 class="heading-1">Model 3</h1>
+          <p class="text-medium">Ажил олгогчоор дамжих лизинг долоо хоногт $133-аас⁵, такси/райдшэйрийн зээл долоо хоногт $187-оос эхэлнэ</p>
+        </div>
+        <div class="button-row button-row--tight">
+          <a class="btn btn--primary" href="#">Захиалах</a>
+          <a class="btn btn--secondary" href="#">Дэлгэрэнгүй</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="test-drive">
+      <div class="container">
+        <article class="test-drive">
+          <div class="test-drive__content">
+            <div class="test-drive__text">
+              <div class="test-drive__title">
+                <p class="tagline">Тоон үзүүлэлт</p>
+                <div class="stack-24">
+                  <h2 class="heading-2">Туршилтын жолоодлого</h2>
+                  <p class="text-medium">Аялал бүрийг илүү хялбар болгоно. Сарын $99-өөр захиалаарай.</p>
+                </div>
+              </div>
+              <div class="stats">
+                <div class="stat">
+                  <p class="heading-2">7x</p>
+                  <p>Цөөн мөргөлдөөн</p>
+                </div>
+                <div class="stat">
+                  <p class="heading-2">17,035,000,000</p>
+                  <p>Туулсан миль</p>
+                </div>
+              </div>
+            </div>
+            <div class="button-row">
+              <a class="btn btn--secondary" href="#">Цаг авах</a>
+              <a class="btn btn--link" href="#">
+                Дэлгэрэнгүй
+                <img src="assets/icons/chevron-right-test-drive.svg" alt="" width="24" height="24">
+              </a>
+            </div>
+          </div>
+          <div class="test-drive__media">
+            <img class="cover-image" src="assets/images/test-drive.png" alt="Tesla машины жолоочийн суудлаас харагдах дотор тал" loading="lazy">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="models">
+      <div class="container container--wide-gap">
+        <div class="section-title">
+          <h2 class="heading-2">Машины загварууд</h2>
+          <p class="text-medium">Танд тохирох аялалын унаа</p>
+        </div>
+
+        <div class="slider">
+          <input class="slider__radio" type="radio" name="models-slider" id="slide-1" aria-label="1-р карт" checked>
+          <input class="slider__radio" type="radio" name="models-slider" id="slide-2" aria-label="2-р карт">
+          <input class="slider__radio" type="radio" name="models-slider" id="slide-3" aria-label="3-р карт">
+          <input class="slider__radio" type="radio" name="models-slider" id="slide-4" aria-label="4-р карт">
+          <input class="slider__radio" type="radio" name="models-slider" id="slide-5" aria-label="5-р карт">
+          <input class="slider__radio" type="radio" name="models-slider" id="slide-6" aria-label="6-р карт">
+
+          <div class="slider__track">
+            <article class="model-card has-overlay">
+              <img class="cover-image" src="assets/images/model-y-l-premium.png" alt="" loading="lazy">
+              <div class="model-card__content">
+                <p class="model-card__description">Урт тэнхлэг хоорондын зайтай дунд оврын SUV</p>
+                <div class="model-card__footer">
+                  <div class="model-card__meta">
+                    <h3 class="model-card__name">Model Y L Premium</h3>
+                    <p>$61,990-аас эхэлнэ</p>
+                  </div>
+                  <img src="assets/icons/card-logo-a.svg" alt="" width="120" height="48">
+                </div>
+              </div>
+            </article>
+
+            <article class="model-card has-overlay">
+              <img class="cover-image" src="assets/images/model-3.png" alt="" loading="lazy">
+              <div class="model-card__content">
+                <p class="model-card__description">Спорт седан</p>
+                <div class="model-card__footer">
+                  <div class="model-card__meta">
+                    <h3 class="model-card__name">Model 3</h3>
+                    <p>Сарын $439-өөс эхлэн лизингээр</p>
+                  </div>
+                  <img src="assets/icons/card-logo-b.svg" alt="" width="120" height="48">
+                </div>
+              </div>
+            </article>
+
+            <article class="model-card has-overlay">
+              <img class="cover-image" src="assets/images/card-placeholder.png" alt="" loading="lazy">
+              <div class="model-card__content">
+                <p class="model-card__description">Дунд оврын SUV</p>
+                <div class="model-card__footer">
+                  <div class="model-card__meta">
+                    <h3 class="model-card__name">Model Y</h3>
+                    <p>Сарын $499-өөс эхлэн лизингээр</p>
+                  </div>
+                  <img src="assets/icons/card-logo-a.svg" alt="" width="120" height="48">
+                </div>
+              </div>
+            </article>
+
+            <article class="model-card has-overlay">
+              <img class="cover-image" src="assets/images/card-placeholder.png" alt="" loading="lazy">
+              <div class="model-card__content">
+                <p class="model-card__description">"The lease made it easy to switch. I pay less than I did for gas and maintenance on my old car. The Model 3 is the best decision I made this year."</p>
+                <div class="model-card__footer">
+                  <div class="model-card__meta">
+                    <h3 class="model-card__name">Sarah Miller</h3>
+                    <p>Teacher, Denver</p>
+                  </div>
+                  <img src="assets/icons/card-logo-b.svg" alt="" width="120" height="48">
+                </div>
+              </div>
+            </article>
+
+            <article class="model-card has-overlay">
+              <img class="cover-image" src="assets/images/card-placeholder.png" alt="" loading="lazy">
+              <div class="model-card__content">
+                <p class="model-card__description">"I was skeptical about electric cars until I drove a Tesla. The instant torque and quiet ride won me over. Now I cannot imagine going back."</p>
+                <div class="model-card__footer">
+                  <div class="model-card__meta">
+                    <h3 class="model-card__name">Robert Chen</h3>
+                    <p>Architect, San Francisco</p>
+                  </div>
+                  <img src="assets/icons/card-logo-a.svg" alt="" width="120" height="48">
+                </div>
+              </div>
+            </article>
+
+            <article class="model-card has-overlay">
+              <img class="cover-image" src="assets/images/card-placeholder.png" alt="" loading="lazy">
+              <div class="model-card__content">
+                <p class="model-card__description">"The Supercharger stops are quick. I grab a coffee, and by the time I am back, the car is ready to go. It fits my busy life."</p>
+                <div class="model-card__footer">
+                  <div class="model-card__meta">
+                    <h3 class="model-card__name">Emily Johnson</h3>
+                    <p>Nurse, Chicago</p>
+                  </div>
+                  <img src="assets/icons/card-logo-b.svg" alt="" width="120" height="48">
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="slider__controls">
+            <div class="slider__dots">
+              <label class="slider__dot" for="slide-1"></label>
+              <label class="slider__dot" for="slide-2"></label>
+              <label class="slider__dot" for="slide-3"></label>
+              <label class="slider__dot" for="slide-4"></label>
+              <label class="slider__dot" for="slide-5"></label>
+              <label class="slider__dot" for="slide-6"></label>
+            </div>
+            <div class="slider__arrows">
+              <!-- Идэвхтэй карт бүрт нэг "өмнөх", нэг "дараах" сум харагдана -->
+              <label class="slider__arrow" data-on="1" for="slide-6"><img src="assets/icons/arrow-back.svg" alt="" width="24" height="24"></label>
+              <label class="slider__arrow" data-on="2" for="slide-1"><img src="assets/icons/arrow-back.svg" alt="" width="24" height="24"></label>
+              <label class="slider__arrow" data-on="3" for="slide-2"><img src="assets/icons/arrow-back.svg" alt="" width="24" height="24"></label>
+              <label class="slider__arrow" data-on="4" for="slide-3"><img src="assets/icons/arrow-back.svg" alt="" width="24" height="24"></label>
+              <label class="slider__arrow" data-on="5" for="slide-4"><img src="assets/icons/arrow-back.svg" alt="" width="24" height="24"></label>
+              <label class="slider__arrow" data-on="6" for="slide-5"><img src="assets/icons/arrow-back.svg" alt="" width="24" height="24"></label>
+
+              <label class="slider__arrow" data-on="1" for="slide-2"><img src="assets/icons/arrow-forward.svg" alt="" width="24" height="24"></label>
+              <label class="slider__arrow" data-on="2" for="slide-3"><img src="assets/icons/arrow-forward.svg" alt="" width="24" height="24"></label>
+              <label class="slider__arrow" data-on="3" for="slide-4"><img src="assets/icons/arrow-forward.svg" alt="" width="24" height="24"></label>
+              <label class="slider__arrow" data-on="4" for="slide-5"><img src="assets/icons/arrow-forward.svg" alt="" width="24" height="24"></label>
+              <label class="slider__arrow" data-on="5" for="slide-6"><img src="assets/icons/arrow-forward.svg" alt="" width="24" height="24"></label>
+              <label class="slider__arrow" data-on="6" for="slide-1"><img src="assets/icons/arrow-forward.svg" alt="" width="24" height="24"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--gray section--promos">
+      <div class="container">
+        <div class="promos">
+          <article class="promo">
+            <div class="promo__content">
+              <h3 class="heading-5">Онцгой урамшуулал</h3>
+              <a class="btn btn--link" href="#">
+                Дэлгэрэнгүй
+                <img src="assets/icons/chevron-right.svg" alt="" width="24" height="24">
+              </a>
+            </div>
+            <div class="promo__media">
+              <img src="assets/images/promo-offer.png" alt="Tesla автомашинууд" loading="lazy">
+            </div>
+          </article>
+
+          <article class="promo">
+            <div class="promo__content">
+              <div class="stack-8">
+                <h3 class="heading-5">2026 оны хувьцаа эзэмшигчдийн хурал</h3>
+                <p>Tesla-гийн ирээдүй таны гарт байна. Таны санал бидэнд чухал .</p>
+              </div>
+              <a class="btn btn--link" href="#">
+                Дэлгэрэнгүй
+                <img src="assets/icons/chevron-right.svg" alt="" width="24" height="24">
+              </a>
+            </div>
+            <div class="promo__media">
+              <img src="assets/images/promo-shareholder.png" alt="Хар дэвсгэр дээрх улаан Tesla автомашин" loading="lazy">
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--gray">
+      <div class="container container--wide-gap container--center">
+        <img class="charging-map" src="assets/images/charging-map.png" alt="Tesla цэнэглэх станцуудын байршлыг харуулсан газрын зураг" loading="lazy">
+        <div class="charging__content">
+          <div class="charging__text">
+            <h2 class="heading-2">Цэнэглэх цэгээ олоорой</h2>
+            <p class="text-medium">Таны ойролцоох Tesla Supercharger болон Destination Charger цэнэглэх станцуудын байршлуудыг хараарай</p>
+          </div>
+          <div class="button-row">
+            <a class="btn btn--secondary" href="#">Сүлжээг үзэх</a>
+            <a class="btn btn--link" href="#">
+              Дэлгэрэнгүй
+              <img src="assets/icons/chevron-right.svg" alt="" width="24" height="24">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="statistics">
+          <h2 class="heading-3">Статистик</h2>
+          <div class="stats">
+            <div class="stat">
+              <p class="heading-2">30,864</p>
+              <p>Supercharger станц</p>
+            </div>
+            <div class="stat">
+              <p class="heading-2">241</p>
+              <p>Destination Charger станц</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container container--wide-gap container--center">
+      <div class="footer__top">
+        <a class="logo" href="#" aria-label="Нүүр хуудас">
+          <img src="assets/icons/logo-tesla-wordmark.svg" alt="" width="342" height="35">
+        </a>
+        <nav class="footer__links" aria-label="Хөлийн цэс">
+          <a href="#">Tesla @2026</a>
+          <a href="#">Нууцлал ба эрх зүй</a>
+          <a href="#">Машины эргүүлэн татлага</a>
+          <a href="#">Холбоо барих</a>
+          <a href="#">Мэдээ</a>
+          <a href="#">Шинэ мэдээлэл</a>
+          <a href="#">Байршил</a>
+        </nav>
+      </div>
+      <div class="footer__credits">
+        <img class="footer__divider" src="assets/icons/divider.svg" alt="" width="1280" height="1">
+        <div class="footer__row">
+          <p>© 2025 Tesla. Бүх эрх хуулиар хамгаалагдсан.</p>
+          <div class="footer__legal">
+            <a href="#">Нууцлал</a>
+            <a href="#">Үйлчилгээний нөхцөл</a>
+            <a href="#">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

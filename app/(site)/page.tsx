@@ -1,30 +1,78 @@
 import Image from "next/image";
 
+import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { FeatureSplit } from "@/components/sections/FeatureSplit";
-import { Hero } from "@/components/sections/Hero";
 import { ModelCard } from "@/components/sections/ModelCard";
+import { ModelPanel } from "@/components/sections/ModelPanel";
 import { ModelSlider } from "@/components/sections/ModelSlider";
 import { PromoCard } from "@/components/sections/PromoCard";
 import { Button } from "@/components/ui/Button";
+import { Mnt } from "@/components/ui/Mnt";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Stats } from "@/components/ui/Stats";
-import { models } from "@/data/models";
+import { Term } from "@/components/ui/Term";
+import { usdToMnt } from "@/data/currency";
+import { modelPanels, models } from "@/data/models";
+
+const mongoliaTips = [
+  {
+    title: "Хүйтэнд хүрэх зай багасна",
+    text: (
+      <>
+        Хүйтэнд батерей, бүхээгийг халаахад эрчим хүч нэмж зарцуулагддаг. Явахаасаа өмнө Tesla апп-аар{" "}
+        <Term id="precondition">урьдчилан халаавал</Term> батерей бэлэн, бүхээг дулаан байна.
+      </>
+    ),
+  },
+  {
+    title: "Цэнэглэгчид залгаатай байлга",
+    text: "Боломжтой бол машинаа цэнэглэгчид залгаатай орхи. Залгаагүй үед цэнэгийг 50%-иас дээш байлгавал хүйтний нөлөө багасна. Дэлгэцэнд цэнхэр цасан ширхэг гарвал батерей хэт хүйтэн байна гэсэн үг.",
+  },
+  {
+    title: "Гэртээ цэнэглэх",
+    text: (
+      <>
+        <Term id="wallConnector" /> цагт 71 км хүртэл, Mobile Connector 240 В-ын залгуураас цагт 48 км хүртэл зай нэмнэ
+        (АНУ-ын үзүүлэлт). Суурилуулахаасаа өмнө цахилгаанчинд шалгуулаарай.
+      </>
+    ),
+  },
+  {
+    title: "Монголд хэрхэн авах вэ",
+    text: "tesla.com-ын улсын жагсаалтад Монгол ороогүй тул Tesla-г импортоор авдаг. Энэ сайтын ₮ үнэ ойролцоо бөгөөд тээвэр, татвар ороогүй.",
+  },
+];
 
 export default function HomePage() {
   return (
     <>
-      <Hero
-        image="/assets/images/hero.jpg"
-        title="Model 3"
-        description="Ажил олгогчоор дамжих лизинг долоо хоногт $133-аас⁵, такси/райдшэйрийн зээл долоо хоногт $187-оос эхэлнэ"
-        preload
-      >
-        <Button href="#">Захиалах</Button>
-        <Button href="#" variant="secondary">
-          Дэлгэрэнгүй
-        </Button>
-      </Hero>
+      {modelPanels.map((panel, index) => (
+        <ModelPanel key={panel.name} {...panel} titleAs={index === 0 ? "h1" : "h2"} preload={index === 0} />
+      ))}
+
+      <Section gray wideGap>
+        <SectionTitle
+          title="Монголын нөхцөлд"
+          description="Улаанбаатарын хүйтэн өвөл, гэрийн цэнэглэлт, үнийн талаар хамгийн их асуудаг асуултууд."
+        />
+        <FeatureGrid onGray columns={4} items={mongoliaTips} />
+        <p className="text-small text-black/70">
+          Эх сурвалж:{" "}
+          <a href="https://www.tesla.com/support/winter-driving-tips" className="underline">
+            Tesla Winter Driving Tips
+          </a>
+          ,{" "}
+          <a href="https://www.tesla.com/home-charging" className="underline">
+            Tesla Home Charging
+          </a>
+          ,{" "}
+          <a href={usdToMnt.url} className="underline">
+            {usdToMnt.source} ({usdToMnt.date})
+          </a>
+          . Миль, цагийн утгыг км руу хөрвүүлж бүхэлчилсэн.
+        </p>
+      </Section>
 
       <Section id="test-drive">
         <FeatureSplit
@@ -51,7 +99,9 @@ export default function HomePage() {
             </>
           }
         >
-          <p className="text-medium">Аялал бүрийг илүү хялбар болгоно. Сарын $99-өөр захиалаарай.</p>
+          <p className="text-medium">
+            Аялал бүрийг илүү хялбар болгоно. Сарын $99-өөр <Mnt usd={99} /> захиалаарай.
+          </p>
         </FeatureSplit>
       </Section>
 
@@ -96,11 +146,12 @@ export default function HomePage() {
           <div className="flex flex-col gap-6 text-center">
             <h2 className="heading-2">Цэнэглэх цэгээ олоорой</h2>
             <p className="text-medium">
-              Таны ойролцоох Tesla Supercharger болон Destination Charger цэнэглэх станцуудын байршлуудыг хараарай
+              Таны ойролцоох Tesla <Term id="supercharger" /> болон <Term id="destinationCharger" /> цэнэглэх
+              станцуудын байршлуудыг хараарай
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-6">
-            <Button href="#" variant="secondary">
+            <Button href="https://www.tesla.com/findus" variant="secondary">
               Сүлжээг үзэх
             </Button>
             <Button href="#" variant="link" chevron>
@@ -115,8 +166,8 @@ export default function HomePage() {
           <h2 className="heading-3">Статистик</h2>
           <Stats
             items={[
-              { value: "30,864", label: "Supercharger станц" },
-              { value: "241", label: "Destination Charger станц" },
+              { value: "30,864", label: <><Term id="supercharger" /> станц</> },
+              { value: "241", label: <><Term id="destinationCharger" /> станц</> },
             ]}
           />
         </div>

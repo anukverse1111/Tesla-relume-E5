@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 const variants = {
-  primary: "border-royal-blue bg-royal-blue text-white",
+  primary: "border-tesla-red bg-tesla-red text-white",
   secondary: "bg-black-5",
   onImage: "bg-white/20 text-white",
   link: "gap-2 border-0",
@@ -21,14 +21,17 @@ type ButtonProps = {
   variant?: keyof typeof variants;
   size?: keyof typeof sizes;
   chevron?: boolean;
+  /** Өргөн зэрэг байрлалын нэмэлт класс */
+  className?: string;
   children: ReactNode;
 };
 
-export function Button({ href, variant = "primary", size = "md", chevron = false, children }: ButtonProps) {
+export function Button({ href, variant = "primary", size = "md", chevron = false, className: extra, children }: ButtonProps) {
   const className = cn(
     "inline-flex items-center justify-center border border-transparent font-medium whitespace-nowrap transition-opacity duration-150 hover:opacity-80 motion-reduce:transition-none",
     variants[variant],
     variant !== "link" && sizes[size],
+    extra,
   );
 
   const content = (

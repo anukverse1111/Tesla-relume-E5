@@ -12,8 +12,10 @@ import { SectionPreview } from "@/components/styleguide/SectionPreview";
 import { ContrastRatio, ResponsiveTokens, TokenValue } from "@/components/styleguide/tokens";
 import { TypeSpecimen } from "@/components/styleguide/TypeSpecimen";
 import { Button } from "@/components/ui/Button";
+import { Mnt } from "@/components/ui/Mnt";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Stats } from "@/components/ui/Stats";
+import { Term } from "@/components/ui/Term";
 import { models } from "@/data/models";
 
 export const metadata: Metadata = {
@@ -40,25 +42,29 @@ const number = (id: (typeof nav)[number][0]) =>
   String(nav.findIndex(([key]) => key === id) + 1).padStart(2, "0");
 
 const principles = [
-  ["Хар, цагаан, нэг цэнхэр", "Дэвсгэр цагаан ба саарал, бичвэр хар. Цэнхэр өнгө зөвхөн гол товч ба focus-д хэрэглэгдэнэ."],
+  ["Хар, цагаан, Tesla улаан", "Дэвсгэр цагаан ба дулаан саарал, бичвэр хар, footer хар. Улаан өнгө гол товч, tagline, тоо, focus-д хэрэглэгдэнэ."],
   ["Inter нэг гэр бүл", "Гарчиг 500, бичвэр 400, tagline 600 жинтэй. Roboto зөвхөн загварын картын тайлбарт."],
   ["Дэлгэц бүрт токен", "Үсгийн хэмжээ, зай 768 ба 992px дээр :root токеноор солигдоно. Компонентын код өөрчлөгдөхгүй."],
   ["Зураг гол дүр", "Hero, карт зургаараа бүтэн дүүрч, 40% бараан давхарга бичвэрийг уншигдуулна."],
 ];
 
 const colors = [
-  ["--color-black", "Үндсэн бичвэр, гарчиг, идэвхтэй цэг"],
-  ["--color-white", "Хуудасны дэвсгэр, зураг дээрх бичвэр"],
-  ["--color-gray", "Саарал хэсэг, карт, slider-ийн сум"],
-  ["--color-royal-blue", "Гол товч, focus ring"],
+  ["--color-tesla-red", "Гол товч, тоо, идэвхтэй цэг"],
+  ["--color-tesla-red-dark", "Tagline, focus ring"],
+  ["--color-black", "Үндсэн бичвэр, гарчиг, footer"],
+  ["--color-white", "Хуудасны дэвсгэр, бараан дээрх бичвэр"],
+  ["--color-gray", "Дулаан саарал хэсэг, карт, slider-ийн сум"],
   ["--color-black-5", "Хоёрдогч товчны дэвсгэр"],
 ];
 
 const contrasts = [
   ["Бичвэр · цагаан дээр", "--color-black", "--color-white"],
   ["Бичвэр · саарал дээр", "--color-black", "--color-gray"],
-  ["Гол товчны бичвэр", "--color-white", "--color-royal-blue"],
-  ["Focus ring · цагаан дээр", "--color-royal-blue", "--color-white"],
+  ["Footer · хар дээр", "--color-white", "--color-black"],
+  ["Гол товчны бичвэр", "--color-white", "--color-tesla-red"],
+  ["Tagline · саарал дээр", "--color-tesla-red-dark", "--color-gray"],
+  ["Тоо · саарал дээр (24px+)", "--color-tesla-red", "--color-gray"],
+  ["Focus ring · цагаан дээр", "--color-tesla-red-dark", "--color-white"],
 ];
 
 const typeScale = ["--text-small", "--text-regular", "--text-medium", "--text-h5", "--text-h3", "--text-h2", "--text-h1"];
@@ -105,7 +111,10 @@ const buttonVariants = [
 const structural = [
   ["Navbar, NavLinks, Footer, Logo", "components/layout/"],
   ["Section", "components/ui/Section.tsx · gray, flushTop, wideGap, center"],
+  ["Navbar", "components/layout/Navbar.tsx · зураг дээр тунгалаг, гүйлгэхэд цагаан, утсан дээр «Цэс» товч"],
+  ["ModelPanel", "components/sections/ModelPanel.tsx · бүтэн дэлгэц, data/models.tsx"],
   ["Hero", "components/sections/Hero.tsx · home | detail | cta"],
+  ["Glossary", "components/sections/Glossary.tsx · data/glossary.ts"],
   ["FeatureSplit", "components/sections/FeatureSplit.tsx · reverse, stats, actions"],
   ["SpecTable, Footnotes", "components/sections/ · data/model-y-specs.tsx"],
 ];
@@ -116,7 +125,10 @@ const allPages = [
 ];
 
 const homeSections = [
-  ["Hero", "Hero · home"],
+  ["Model 3", "ModelPanel · data/models.tsx"],
+  ["Model Y", "ModelPanel"],
+  ["Model Y L Premium", "ModelPanel"],
+  ["Монголын нөхцөлд", "SectionTitle, FeatureGrid · 4 багана, Term"],
   ["Туршилтын жолоодлого", "FeatureSplit, Stats"],
   ["Машины загварууд", "SectionTitle, ModelSlider, ModelCard"],
   ["Урамшуулал", "PromoCard"],
@@ -131,6 +143,7 @@ const modelYSections = [
   ["Бензин машинаас хямд", "FeatureGrid · 3 багана"],
   ["Үргэлж холбоотой", "FeatureGrid · 4 багана"],
   ["Хувилбаруудын харьцуулалт", "SpecTable, Footnotes"],
+  ["Нэр томьёоны тайлбар", "Glossary · data/glossary.ts"],
   ["Дуудлага", "Hero · cta"],
 ];
 
@@ -242,7 +255,12 @@ export default function StyleguidePage() {
                     Аа Өө
                   </span>
                   <span className="font-mono text-[12px]">
-                    <ContrastRatio foreground={foreground} background={background} nonText={label.startsWith("Focus")} />
+                    <ContrastRatio
+                      foreground={foreground}
+                      background={background}
+                      nonText={label.startsWith("Focus")}
+                      large={label.includes("24px")}
+                    />
                   </span>
                 </SgRow>
               ))}
@@ -334,7 +352,7 @@ export default function StyleguidePage() {
               <TypeSpecimen className="heading-3" label=".heading-3">Статистик</TypeSpecimen>
               <TypeSpecimen className="heading-5" label=".heading-5">Онцгой урамшуулал</TypeSpecimen>
               <TypeSpecimen className="text-medium" label=".text-medium">Танд тохирох аялалын унаа</TypeSpecimen>
-              <TypeSpecimen className="font-semibold" label=".font-semibold · tagline">Хүрэх зай</TypeSpecimen>
+              <TypeSpecimen className="font-semibold text-tesla-red-dark" label=".font-semibold .text-tesla-red-dark · tagline">Хүрэх зай</TypeSpecimen>
               <TypeSpecimen label="body">Өндөр хэмнэлт, бага засвар.</TypeSpecimen>
               <TypeSpecimen className="font-roboto text-medium" label=".font-roboto · картын тайлбар">Дунд оврын SUV</TypeSpecimen>
               <TypeSpecimen className="text-small" label=".text-small · footer, тэмдэглэл">Бүх эрх хуулиар хамгаалагдсан.</TypeSpecimen>
@@ -350,7 +368,7 @@ export default function StyleguidePage() {
                 <li key={step} className="grid items-center gap-1 md:grid-cols-[90px_60px_auto_minmax(0,1fr)] md:gap-4">
                   <span className="font-mono text-[13px]">gap-{step}</span>
                   <span className="font-mono text-[12px] text-black/60">{step * 4}px</span>
-                  <span className="block rounded-[2px] bg-royal-blue" style={{ width: `calc(var(--spacing) * ${step})`, height: `calc(var(--spacing) * ${step})` }} />
+                  <span className="block rounded-[2px] bg-tesla-red" style={{ width: `calc(var(--spacing) * ${step})`, height: `calc(var(--spacing) * ${step})` }} />
                   <span className="text-[12px] text-black/60">{usage}</span>
                 </li>
               ))}
@@ -412,8 +430,8 @@ export default function StyleguidePage() {
                   <img src="/assets/icons/arrow-forward.svg" alt="" width={24} height={24} />
                 </span>
               </Tile>
-              <Tile title="Focus ring" spec="2px --color-royal-blue, offset 2px · :focus-visible">
-                <span className="px-4 py-2 outline-2 outline-offset-2 outline-royal-blue">Focus</span>
+              <Tile title="Focus ring" spec="2px --color-tesla-red-dark, offset 2px · :focus-visible">
+                <span className="px-4 py-2 outline-2 outline-offset-2 outline-tesla-red-dark">Focus</span>
               </Tile>
             </ul>
           </SgSection>
@@ -562,6 +580,31 @@ export default function StyleguidePage() {
                   imageAlt="Хар дэвсгэр дээрх улаан Tesla автомашин"
                 />
               </div>
+            </DemoBox>
+
+            <SgH3>
+              Term · <code>components/ui/Term.tsx</code>
+            </SgH3>
+            <SgNote>
+              Англи нэр томьёо. Хулгана очих, Tab дарах эсвэл утсан дээр дарахад монгол тайлбар гарна. Тайлбарууд{" "}
+              <code>data/glossary.ts</code>-д.
+            </SgNote>
+            <DemoBox className="pt-24">
+              <p>
+                Урт замд <Term id="tripPlanner" /> <Term id="supercharger">Supercharger</Term>-ийн зогсоолуудыг төлөвлөнө.
+              </p>
+            </DemoBox>
+
+            <SgH3>
+              Mnt · <code>components/ui/Mnt.tsx</code>
+            </SgH3>
+            <SgNote>
+              Долларын үнийн ард ойролцоо төгрөг. Ханшийг <code>data/currency.ts</code>-д нэг газар шинэчилнэ.
+            </SgNote>
+            <DemoBox>
+              <p>
+                $61,990-аас <Mnt usd={61990} /> · сарын $499 <Mnt usd={499} /> · долоо хоногт $133 <Mnt usd={133} />
+              </p>
             </DemoBox>
 
             <SgH3>Бүтцийн компонентууд</SgH3>

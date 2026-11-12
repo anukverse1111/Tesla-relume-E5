@@ -3,12 +3,14 @@ import type { Metadata } from "next";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { FeatureSplit } from "@/components/sections/FeatureSplit";
 import { Footnotes } from "@/components/sections/Footnotes";
+import { Glossary } from "@/components/sections/Glossary";
 import { Hero } from "@/components/sections/Hero";
 import { SpecTable } from "@/components/sections/SpecTable";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Stats } from "@/components/ui/Stats";
+import { Term } from "@/components/ui/Term";
 import { specNotes, specSource } from "@/data/model-y-specs";
 
 export const metadata: Metadata = {
@@ -39,7 +41,7 @@ export default function ModelYPage() {
         <Stats
           columns={3}
           items={[
-            { value: "517 км", label: "Хүрэх зай, EPA тооцоо (321 миль)" },
+            { value: "517 км", label: <>Хүрэх зай, <Term id="epa" /> тооцоо (321 миль)</> },
             { value: "5 од", label: <>Аюулгүй байдлын үнэлгээ<sup>1</sup></> },
             { value: "2,095 л", label: "Ачааны багтаамж (74 куб фут)" },
           ]}
@@ -66,8 +68,9 @@ export default function ModelYPage() {
             }
           >
             <p className="text-medium">
-              Нэг цэнэглэлтээр EPA тооцоогоор 517 км (321 миль) хүртэл явна. Урт замд Trip Planner таны маршрутад
-              Supercharger-ийн зогсоолуудыг нэмж өгнө.
+              Нэг цэнэглэлтээр <Term id="epa" /> тооцоогоор 517 км (321 миль) хүртэл явна. Урт замд{" "}
+              <Term id="tripPlanner" /> таны маршрутад <Term id="supercharger">Supercharger</Term>-ийн зогсоолуудыг
+              нэмж өгнө.
             </p>
           </FeatureSplit>
 
@@ -88,7 +91,7 @@ export default function ModelYPage() {
               анхааруулга, идэвхтэй яаралтай тоормос, эгнээнээс гарахаас сэргийлэх систем стандартаар ирнэ.
             </p>
             <p className="text-medium">
-              Full Self-Driving (Supervised) багцыг нэмж авах боломжтой<sup>3</sup>.
+              <Term id="fsd" /> багцыг нэмж авах боломжтой<sup>3</sup>.
             </p>
           </FeatureSplit>
 
@@ -174,6 +177,14 @@ export default function ModelYPage() {
         />
         <SpecTable />
         <Footnotes notes={specNotes} source={specSource} />
+      </Section>
+
+      <Section id="glossary" wideGap>
+        <SectionTitle
+          title="Нэр томьёоны тайлбар"
+          description="Энэ сайтад гардаг англи нэр томьёо. Хуудсан дээр цэгэн зураастай үг дээр очиход мөн тайлбар гарна."
+        />
+        <Glossary />
       </Section>
 
       <Hero

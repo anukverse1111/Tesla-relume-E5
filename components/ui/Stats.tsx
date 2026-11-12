@@ -26,7 +26,8 @@ export function Stats({ items, valueSize = "h2", columns = 2 }: StatsProps) {
             three ? "flex-none md:flex-[1_0_0]" : "flex-[1_0_0] wrap-anywhere",
           )}
         >
-          <p className={valueSize === "h2" ? "heading-2" : "heading-5"}>{item.value}</p>
+          {/* 24px-ээс дээш тул том бичвэрийн 3:1 шаардлагыг хангана */}
+          <p className={cn("text-tesla-red", valueSize === "h2" ? "heading-2" : "heading-5")}>{item.value}</p>
           <p>{item.label}</p>
         </div>
       ))}

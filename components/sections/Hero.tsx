@@ -5,7 +5,8 @@ import { cn } from "@/lib/cn";
 
 const variants = {
   home: "h-[560px] md:h-[720px] lg:h-[900px]",
-  detail: "h-[560px] pt-12 md:h-[720px] md:pt-16 lg:h-[900px]",
+  // Тогтмол header зургийн дээр байрлах тул түүний өндрийг нэмнэ
+  detail: "h-[560px] pt-[calc(var(--spacing-header)+48px)] md:h-[720px] md:pt-[calc(var(--spacing-header)+64px)] lg:h-[900px]",
   cta: "h-[480px] pt-12 md:pt-16 lg:h-[640px]",
 };
 
@@ -14,7 +15,7 @@ type HeroProps = {
   image: string;
   title: string;
   titleAs?: "h1" | "h2";
-  description: string;
+  description: ReactNode;
   preload?: boolean;
   /** Товчнууд */
   children: ReactNode;

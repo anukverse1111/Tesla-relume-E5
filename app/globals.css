@@ -9,8 +9,11 @@
   --font-sans: var(--next-inter), sans-serif;
   --font-roboto: var(--next-roboto), sans-serif;
 
-  --color-gray: #f2f2f2;
-  --color-royal-blue: #3984e6;
+  --color-gray: #f4f1ee;
+  /* Дүүргэлт, том бичвэр. Цагаан бичвэртэй 4.7:1 */
+  --color-tesla-red: #e31937;
+  /* Жижиг бичвэр, focus ring. Цагаан ба саарал дээр 5:1-ээс дээш */
+  --color-tesla-red-dark: #c8102e;
   --color-black-5: rgba(0, 0, 0, 0.05);
 
   --text-*: initial;
@@ -23,6 +26,8 @@
   --text-small: 14px;
 
   --spacing-page: 20px;
+  /* Тогтмол header-ийн өндөр. Утсан дээр цэс "Цэс" товчоор нээгддэг тул бүх дэлгэцэд ижил */
+  --spacing-header: 72px;
   --spacing-section-lg: 64px;
   --spacing-section-md: 48px;
   --spacing-card-gap: 16px;
@@ -76,6 +81,11 @@
     max-width: none;
   }
 
+  /* #models гэх мэт холбоосоор очиход гарчиг тогтмол header-ийн ард нуугдахгүй */
+  [id] {
+    scroll-margin-top: var(--spacing-header);
+  }
+
   sup {
     font-size: 0.7em;
     line-height: 0;
@@ -85,7 +95,7 @@
 
   a:focus-visible,
   button:focus-visible {
-    outline: 2px solid var(--color-royal-blue);
+    outline: 2px solid var(--color-tesla-red-dark);
     outline-offset: 2px;
   }
 }

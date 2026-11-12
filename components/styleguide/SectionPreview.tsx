@@ -35,6 +35,8 @@ export function SectionPreview({ page, selector, title, source }: SectionPreview
     const win = frame.current?.contentWindow;
     const element = win?.document.querySelector(selector);
     if (!win || !element) return;
+    // Тогтмол header бусад хэсгийн дээд талыг дарахгүйн тулд нууна
+    if (!selector.includes("header")) win.document.querySelector("body > header")?.setAttribute("hidden", "");
     const rect = element.getBoundingClientRect();
     setArea({ top: rect.top + win.scrollY, height: rect.height });
   };

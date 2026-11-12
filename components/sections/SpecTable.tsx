@@ -8,7 +8,7 @@ export function SpecTable() {
       tabIndex={0}
       role="region"
       aria-label="Хувилбаруудын харьцуулсан хүснэгт"
-      className="w-full overflow-x-auto rounded-card bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal-blue"
+      className="w-full overflow-x-auto rounded-card bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tesla-red-dark"
     >
       <table className="w-full min-w-[880px] text-left">
         <thead>

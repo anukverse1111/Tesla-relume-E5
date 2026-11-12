@@ -28,7 +28,7 @@ export function FeatureSplit({ tagline, title, image, imageAlt, reverse, stats, 
       <div className="flex min-w-0 flex-none flex-col justify-center gap-8 p-6 md:p-12 lg:flex-[0_0_50%]">
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
-            <p className="font-semibold">{tagline}</p>
+            <p className="font-semibold text-tesla-red-dark">{tagline}</p>
             <div className="flex flex-col gap-6">
               <h2 className="heading-2">{title}</h2>
               {children}

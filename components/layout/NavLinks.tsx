@@ -9,20 +9,22 @@ const links = [
   { href: "/model-y", label: "Model Y" },
 ];
 
-export function NavLinks() {
+/** Утсан дээр Navbar-ын "Цэс" товчоор нээгдэх босоо жагсаалт, том дэлгэцэнд нэг мөр */
+export function NavLinks({ id }: { id?: string }) {
   const pathname = usePathname();
 
   return (
     <nav
+      id={id}
       aria-label="Үндсэн цэс"
-      className="order-3 flex w-full flex-wrap items-center justify-center gap-x-6 gap-y-2 whitespace-nowrap md:order-none md:w-auto md:flex-nowrap md:gap-8"
+      className="order-3 hidden w-full flex-col py-2 whitespace-nowrap group-data-[open=true]/nav:flex md:order-none md:flex md:w-auto md:flex-row md:items-center md:gap-8 md:py-0"
     >
       {links.map((link) => (
         <Link
           key={link.label}
           href={link.href}
           aria-current={link.href === pathname ? "page" : undefined}
-          className="hover:underline aria-[current=page]:font-semibold"
+          className="py-3 text-medium hover:underline aria-[current=page]:font-semibold md:py-0 md:text-regular"
         >
           {link.label}
         </Link>

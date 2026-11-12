@@ -1,7 +1,9 @@
+import type { ReactNode } from "react";
+
 import { cn } from "@/lib/cn";
 
 type FeatureGridProps = {
-  items: { title: string; text: string }[];
+  items: { title: string; text: ReactNode }[];
   columns?: 3 | 4;
   /** Саарал дэвсгэртэй хэсэг дотор карт цагаан байна */
   onGray?: boolean;

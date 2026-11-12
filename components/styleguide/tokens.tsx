@@ -59,13 +59,19 @@ export function ColorValue({ name }: { name: string }) {
   return <>{`${toHex(color)} · ${contrast(color, { r: 255, g: 255, b: 255, a: 1 }).toFixed(1)}:1`}</>;
 }
 
-export function ContrastRatio({ foreground, background, nonText }: { foreground: string; background: string; nonText?: boolean }) {
+type ContrastProps = { foreground: string; background: string; nonText?: boolean; large?: boolean };
+
+export function ContrastRatio({ foreground, background, nonText, large }: ContrastProps) {
   const fg = parseColor(useToken(foreground));
   const bg = parseColor(useToken(background));
   if (!fg || !bg) return null;
   const ratio = contrast(fg, bg);
-  // WCAG: бичвэр 4.5:1 (том бичвэр 3:1), дүрс ба шугам 3:1
-  const level = nonText ? (ratio >= 3 ? "AA · бичвэр биш" : "Хангалтгүй") : ratio >= 4.5 ? "AA" : ratio >= 3 ? "Зөвхөн том бичвэр" : "Хангалтгүй";
+  // WCAG: бичвэр 4.5:1, том бичвэр (24px+) 3:1, дүрс ба шугам 3:1
+  const level = nonText
+    ? ratio >= 3 ? "AA · бичвэр биш" : "Хангалтгүй"
+    : large
+      ? ratio >= 3 ? "AA · том бичвэр" : "Хангалтгүй"
+      : ratio >= 4.5 ? "AA" : ratio >= 3 ? "Зөвхөн том бичвэр" : "Хангалтгүй";
   return <>{`${ratio.toFixed(1)}:1 · ${level}`}</>;
 }
 

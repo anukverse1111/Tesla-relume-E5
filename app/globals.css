@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* Design tokens, Figma-ийн хувьсагчуудаас авсан. Үндсэн утга нь гар утасных (<768px). */
+@theme static {
+  --breakpoint-*: initial;
+  --breakpoint-md: 48rem; /* 768px */
+  --breakpoint-lg: 62rem; /* 992px */
+
+  --font-sans: var(--next-inter), sans-serif;
+  --font-roboto: var(--next-roboto), sans-serif;
+
+  --color-gray: #f2f2f2;
+  --color-royal-blue: #3984e6;
+  --color-black-5: rgba(0, 0, 0, 0.05);
+
+  --text-*: initial;
+  --text-h1: 44px;
+  --text-h2: 36px;
+  --text-h3: 32px;
+  --text-h5: 24px;
+  --text-medium: 18px;
+  --text-regular: 16px;
+  --text-small: 14px;
+
+  --spacing-page: 20px;
+  --spacing-section-lg: 64px;
+  --spacing-section-md: 48px;
+  --spacing-card-gap: 16px;
+  --spacing-card-width: min(608px, calc(100vw - 2 * var(--spacing-page)));
+
+  --container-site: 1280px;
+  --container-large: 768px;
+  --container-small: 480px;
+
+  --radius-card: 8px;
+
+  --default-transition-timing-function: ease;
+}
+
+@layer base {
+  /* Figma-д зөвхөн 1440px загвар байгаа тул доорх хэмжээсүүдийг дасан зохицуулав */
+  @media (width >= 48rem) {
+    :root {
+      --text-h1: 56px;
+      --text-h2: 44px;
+      --text-h3: 36px;
+      --text-h5: 28px;
+      --spacing-page: 32px;
+      --spacing-section-lg: 80px;
+      --spacing-section-md: 64px;
+      --spacing-card-gap: 32px;
+    }
+  }
+
+  @media (width >= 62rem) {
+    :root {
+      --text-h1: 72px;
+      --text-h2: 52px;
+      --text-h3: 44px;
+      --spacing-page: 64px;
+      --spacing-section-lg: 112px;
+      --spacing-section-md: 80px;
+    }
+  }
+
+  body {
+    background: var(--color-white);
+    color: var(--color-black);
+    font-size: var(--text-regular);
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img {
+    max-width: none;
+  }
+
+  sup {
+    font-size: 0.7em;
+    line-height: 0;
+    position: static;
+    vertical-align: super;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--color-royal-blue);
+    outline-offset: 2px;
+  }
+}
+
+/* Ижил хэв маяг h1, h2, p зэрэг өөр tag дээр хэрэглэгддэг тул utility хэлбэртэй */
+@utility heading-1 {
+  font-size: var(--text-h1);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+@utility heading-2 {
+  font-size: var(--text-h2);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+@utility heading-3 {
+  font-size: var(--text-h3);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+@utility heading-5 {
+  font-size: var(--text-h5);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+/* Зургийн дээрх 40% бараан давхарга */
+@utility has-overlay {
+  position: relative;
+
+  &::after {
+    background: rgba(0, 0, 0, 0.4);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+}

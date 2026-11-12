@@ -13,7 +13,8 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Stats } from "@/components/ui/Stats";
 import { Term } from "@/components/ui/Term";
 import { usdToMnt } from "@/data/currency";
-import { modelPanels, models } from "@/data/models";
+import { modelPanels } from "@/data/models";
+import { getPublishedCarModels } from "@/lib/car-models";
 
 const mongoliaTips = [
   {
@@ -44,7 +45,9 @@ const mongoliaTips = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const models = await getPublishedCarModels();
+
   return (
     <>
       {modelPanels.map((panel, index) => (
@@ -105,14 +108,16 @@ export default function HomePage() {
         </FeatureSplit>
       </Section>
 
-      <Section id="models" wideGap>
-        <SectionTitle title="Машины загварууд" description="Танд тохирох аялалын унаа" />
-        <ModelSlider>
-          {models.map((model) => (
-            <ModelCard key={model.name} {...model} />
-          ))}
-        </ModelSlider>
-      </Section>
+      {models.length > 0 && (
+        <Section id="models" wideGap>
+          <SectionTitle title="Машины загварууд" description="Танд тохирох аялалын унаа" />
+          <ModelSlider>
+            {models.map((model, index) => (
+              <ModelCard key={`${index}-${model.name}`} {...model} />
+            ))}
+          </ModelSlider>
+        </Section>
+      )}
 
       {/* Figma дахь хоосон 27px гарчиг ба 80px зайг хадгална */}
       <Section gray className="md:pt-[calc(var(--spacing-section-lg)+27px+80px)]">

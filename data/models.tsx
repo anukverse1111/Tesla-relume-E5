@@ -3,12 +3,16 @@ import type { ReactNode } from "react";
 import { Mnt } from "@/components/ui/Mnt";
 import { Term } from "@/components/ui/Term";
 
+/** Нүүрний "Машины загварууд" карт. Үндсэн өгөгдөл нь Supabase-д байх бөгөөд /admin-аас засна. */
 export type Model = {
   name: string;
   /** Картын нэрний холбоос */
   href?: string;
   description: string;
-  price: ReactNode;
+  /** Жишээ: "Сарын $499-өөс эхлэн лизингээр" */
+  priceText: string;
+  /** Байвал үнийн ард ойролцоо төгрөгийн дүнг харуулна */
+  priceUsd?: number;
   image: string;
   logo: string;
 };
@@ -23,26 +27,21 @@ export type ModelPanel = {
   learnUrl: string;
 };
 
+/** Supabase тохируулаагүй эсвэл холбогдож чадаагүй үед харуулах нөөц өгөгдөл */
 export const models: Model[] = [
   {
     name: "Model Y L Premium",
     description: "Урт тэнхлэг хоорондын зайтай дунд оврын SUV",
-    price: (
-      <>
-        $61,990-аас эхэлнэ <Mnt usd={61990} />
-      </>
-    ),
+    priceText: "$61,990-аас эхэлнэ",
+    priceUsd: 61990,
     image: "/assets/images/model-y-l-premium.png",
     logo: "/assets/icons/card-logo-a.svg",
   },
   {
     name: "Model 3",
     description: "Спорт седан",
-    price: (
-      <>
-        Сарын $439-өөс эхлэн лизингээр <Mnt usd={439} />
-      </>
-    ),
+    priceText: "Сарын $439-өөс эхлэн лизингээр",
+    priceUsd: 439,
     image: "/assets/images/model-3.png",
     logo: "/assets/icons/card-logo-b.svg",
   },
@@ -50,11 +49,8 @@ export const models: Model[] = [
     name: "Model Y",
     href: "/model-y",
     description: "Дунд оврын SUV",
-    price: (
-      <>
-        Сарын $499-өөс эхлэн лизингээр <Mnt usd={499} />
-      </>
-    ),
+    priceText: "Сарын $499-өөс эхлэн лизингээр",
+    priceUsd: 499,
     image: "/assets/images/model-y.jpg",
     logo: "/assets/icons/card-logo-a.svg",
   },

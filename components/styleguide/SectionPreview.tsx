@@ -35,8 +35,14 @@ export function SectionPreview({ page, selector, title, source }: SectionPreview
     const win = frame.current?.contentWindow;
     const element = win?.document.querySelector(selector);
     if (!win || !element) return;
-    // Тогтмол header бусад хэсгийн дээд талыг дарахгүйн тулд нууна
-    if (!selector.includes("header")) win.document.querySelector("body > header")?.setAttribute("hidden", "");
+    // Тогтмол header бусад хэсгийн дээд талыг дарахгүйн тулд нууна. React-ийн DOM-д attribute
+    // нэмбэл hydration зөрнө, тиймээс iframe-д тусдаа stylesheet залгана.
+    if (!selector.includes("header")) {
+      const frameWindow = win as Window & typeof globalThis;
+      const sheet = new frameWindow.CSSStyleSheet();
+      sheet.replaceSync("body > header { visibility: hidden !important; }");
+      frameWindow.document.adoptedStyleSheets = [...frameWindow.document.adoptedStyleSheets, sheet];
+    }
     const rect = element.getBoundingClientRect();
     setArea({ top: rect.top + win.scrollY, height: rect.height });
   };

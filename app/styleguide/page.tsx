@@ -45,14 +45,15 @@ const principles = [
   ["Хар, цагаан, Tesla улаан", "Дэвсгэр цагаан ба дулаан саарал, бичвэр хар, footer хар. Улаан өнгө гол товч, tagline, тоо, focus-д хэрэглэгдэнэ."],
   ["Inter нэг гэр бүл", "Гарчиг 500, бичвэр 400, tagline 600 жинтэй. Roboto зөвхөн загварын картын тайлбарт."],
   ["Дэлгэц бүрт токен", "Үсгийн хэмжээ, зай 768 ба 992px дээр :root токеноор солигдоно. Компонентын код өөрчлөгдөхгүй."],
-  ["Зураг гол дүр", "Hero, карт зургаараа бүтэн дүүрч, 40% бараан давхарга бичвэрийг уншигдуулна."],
+  ["Зураг гол дүр", "ModelPanel, Hero, карт зургаараа бүтэн дүүрнэ. Бараан градиент эсвэл 40% давхарга бичвэрийг уншигдуулна."],
+  ["Монгол хэрэглэгчдэд ойлгомжтой", "Англи нэр томьёо бүр тайлбартай, $ үнэ бүр ойролцоо ₮-тэй, хэмжүүр км, л, кг. Мэдээлэл бүр эх сурвалжтай."],
 ];
 
 const colors = [
   ["--color-tesla-red", "Гол товч, тоо, идэвхтэй цэг"],
   ["--color-tesla-red-dark", "Tagline, focus ring"],
-  ["--color-black", "Үндсэн бичвэр, гарчиг, footer"],
-  ["--color-white", "Хуудасны дэвсгэр, бараан дээрх бичвэр"],
+  ["--color-black", "Үндсэн бичвэр, гарчиг, footer, tooltip"],
+  ["--color-white", "Хуудасны дэвсгэр, гүйлгэсэн header, бараан дээрх бичвэр"],
   ["--color-gray", "Дулаан саарал хэсэг, карт, slider-ийн сум"],
   ["--color-black-5", "Хоёрдогч товчны дэвсгэр"],
 ];
@@ -60,7 +61,7 @@ const colors = [
 const contrasts = [
   ["Бичвэр · цагаан дээр", "--color-black", "--color-white"],
   ["Бичвэр · саарал дээр", "--color-black", "--color-gray"],
-  ["Footer · хар дээр", "--color-white", "--color-black"],
+  ["Footer, tooltip · хар дээр", "--color-white", "--color-black"],
   ["Гол товчны бичвэр", "--color-white", "--color-tesla-red"],
   ["Tagline · саарал дээр", "--color-tesla-red-dark", "--color-gray"],
   ["Тоо · саарал дээр (24px+)", "--color-tesla-red", "--color-gray"],
@@ -72,23 +73,25 @@ const responsiveType = ["--text-h1", "--text-h2", "--text-h3", "--text-h5"];
 const responsiveSpace = ["--spacing-page", "--spacing-section-lg", "--spacing-section-md", "--spacing-card-gap"];
 
 const spaceScale = [
-  [2, "Stat доторх зай, slider-ийн цэг"],
-  [3, "Navbar мөр хоорондын зай (утас)"],
-  [4, "Гарчгийн блок, Hero-ийн товч"],
-  [6, "Stats, гарчиг ба тайлбар"],
+  [2, "Stat, FeatureGrid картын доторх зай, slider-ийн цэг"],
+  [3, "ModelPanel-ийн гарчиг ба тайлбар, footer-ийн холбоосны мөр, утасны цэсний мөр"],
+  [4, "Гарчгийн блок, Hero ба ModelPanel-ийн товч"],
+  [6, "Stats, гарчиг ба тайлбар, картын дотор зай"],
   [8, "Карт хоорондын зай, FeatureSplit"],
-  [12, "FeatureSplit-ийн дотор зай"],
-  [20, "Гарчиг ба агуулгын зай"],
+  [12, "FeatureSplit-ийн дотор зай, ModelPanel-ийн доод зай, утсан дээрх гарчиг ба агуулгын зай"],
+  [16, "CTA Hero-ийн дээд зай, ModelPanel-ийн доод зай (768px+)"],
+  [20, "Гарчиг ба агуулгын зай (768px+)"],
 ] as const;
 
 const layoutTokens = [
   ["--spacing-page", "Хуудасны хажуугийн зай"],
+  ["--spacing-header", "Тогтмол header-ийн өндөр. ModelPanel, Hero-ийн дээд зай, #холбоосоор очих үеийн зай"],
   ["--spacing-section-lg", "Хэсгийн дээд, доод зай"],
   ["--spacing-section-md", "Footer-ийн дээд, доод зай"],
   ["--spacing-card-gap", "Slider-ийн карт хоорондын зай"],
   ["--spacing-card-width", "Загварын картын өргөн"],
   ["--container-site", "Агуулгын дээд өргөн"],
-  ["--container-large", "Гарчиг, Hero-ийн агуулгын өргөн"],
+  ["--container-large", "Гарчиг, Hero ба ModelPanel-ийн бичвэрийн өргөн"],
   ["--container-small", "Footer-ийн холбоосны өргөн"],
   ["--breakpoint-md", "Tablet, md: угтвар"],
   ["--breakpoint-lg", "Desktop, lg: угтвар"],
@@ -106,12 +109,13 @@ const buttonVariants = [
   ["onImage", "Зураг дээрх хоёрдогч."],
   ["link", "Дэлгэрэнгүй холбоос. chevron-оор сумтай."],
   ["size=\"sm\"", "Navbar-ын жижиг товч."],
+  ["className", "Байрлалын нэмэлт класс. ModelPanel-д товчийг тэнцүү өргөнтэй болгоно."],
 ];
 
 const structural = [
-  ["Navbar, NavLinks, Footer, Logo", "components/layout/"],
+  ["Navbar, NavLinks", "components/layout/ · зураг дээр тунгалаг, гүйлгэхэд цагаан, утсан дээр «Цэс» товч"],
+  ["Footer, Logo", "components/layout/ · хар footer, ханшийн тайлбар data/currency.ts-ээс"],
   ["Section", "components/ui/Section.tsx · gray, flushTop, wideGap, center"],
-  ["Navbar", "components/layout/Navbar.tsx · зураг дээр тунгалаг, гүйлгэхэд цагаан, утсан дээр «Цэс» товч"],
   ["ModelPanel", "components/sections/ModelPanel.tsx · бүтэн дэлгэц, data/models.tsx"],
   ["Hero", "components/sections/Hero.tsx · home | detail | cta"],
   ["Glossary", "components/sections/Glossary.tsx · data/glossary.ts"],
@@ -148,15 +152,19 @@ const modelYSections = [
 ];
 
 const motions = [
+  ["Header-ийн дэвсгэр", "тунгалаг → цагаан, бичвэр цагаан → хар", "Navbar.tsx", "8px-ээс доош гүйлгэх, утасны цэс нээх", "300ms ease"],
   ["Товчны hover", "opacity 1 → 0.8", "Button.tsx", "Hover", "150ms ease"],
+  ["Tooltip гарах", "opacity 0 → 1", "Term.tsx", "Hover, focus, утсан дээр дарах", "150ms ease"],
   ["Slider-ийн гүйлт", "translateX, карт + зай", "ModelSlider.tsx", "Сум, цэг дарах", "400ms ease"],
-  ["Идэвхтэй цэг", "opacity 0.2 → 1", "ModelSlider.tsx", "Карт солигдох", "200ms ease"],
+  ["Идэвхтэй цэг", "opacity 0.2 → 1, саарал → улаан", "ModelSlider.tsx", "Карт солигдох", "200ms ease"],
+  ["Утасны цэс", "нуугдсан → харагдах", "Navbar.tsx", "«Цэс» товч, холбоос дарах, Esc", "Шууд, transition байхгүй"],
   ["Холбоосны hover", "text-decoration: underline", "NavLinks.tsx, ModelCard.tsx", "Hover", "Шууд, transition байхгүй"],
 ];
 
 const durations = [
-  ["duration-150", "150ms", "Товчны hover"],
+  ["duration-150", "150ms", "Товчны hover, tooltip"],
   ["duration-200", "200ms", "Slider-ийн идэвхтэй цэг"],
+  ["duration-300", "300ms", "Header-ийн дэвсгэр"],
   ["duration-400", "400ms", "Slider-ийн гүйлт"],
 ];
 
@@ -224,14 +232,17 @@ export default function StyleguidePage() {
                 <img src="/assets/icons/logo-tesla-wordmark.svg" alt="Tesla лого, хар дэвсгэр дээр" width={342} height={35} className="h-auto w-40 brightness-0 invert" />
                 <span className="text-[12px] text-white/70">Бараан дээр · цагаан</span>
               </li>
-              <li className="has-overlay grid justify-items-center gap-8 overflow-hidden rounded-card px-6 pt-12 pb-4">
-                <Image src="/assets/images/hero.jpg" alt="" fill sizes="320px" className="object-cover" />
+              <li className="relative grid justify-items-center gap-8 overflow-hidden rounded-card px-6 pt-12 pb-4">
+                <Image src="/assets/images/model-3.png" alt="" fill sizes="320px" className="object-cover" />
+                <span aria-hidden className="absolute inset-0 bg-linear-to-b from-black/60 via-black/5 to-black/50" />
                 <img src="/assets/icons/logo-tesla-wordmark.svg" alt="Tesla лого, зураг дээр" width={342} height={35} className="relative z-1 h-auto w-40 brightness-0 invert" />
                 <span className="relative z-1 text-[12px] text-white/80">Зураг дээр · цагаан</span>
               </li>
             </ul>
             <SgNote>
               <code>public/assets/icons/logo-tesla-wordmark.svg</code>. Navbar, footer дээр 120px, утсан дээр 96px өргөнтэй.
+              Navbar зураг дээр байхад лого <code>brightness-0 invert</code>-ээр цагаан, гүйлгэхэд хар болно. Footer дээр
+              үргэлж цагаан (<code>&lt;Logo inverted /&gt;</code>).
             </SgNote>
           </SgSection>
 
@@ -393,8 +404,8 @@ export default function StyleguidePage() {
           <SgSection id="shape" number={number("shape")} title="Хэлбэр">
             <ul className="grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(180px,1fr))]">
               {[
-                ["--radius-card", "rounded-card", "Карт, зураг, хүснэгт"],
-                ["0", "rounded-none", "Товч, сум, Hero"],
+                ["--radius-card", "rounded-card", "Карт, зураг, хүснэгт, tooltip"],
+                ["0", "rounded-none", "Товч, сум, Hero, ModelPanel, header"],
                 ["50%", "rounded-full", "Slider-ийн цэг"],
               ].map(([name, shape, usage]) => (
                 <li key={name} className="grid content-start gap-1">
@@ -416,11 +427,22 @@ export default function StyleguidePage() {
 
           <SgSection id="stroke" number={number("stroke")} title="Шугам">
             <ul className={tileGrid}>
-              <Tile title="Hairline" spec="1px black 15% · хүснэгтийн мөр">
+              <Tile title="Hairline" spec="1px black 15% · хүснэгтийн мөр, нэр томьёоны жагсаалт">
                 <span className="block h-px w-3/4 bg-black/15" />
               </Tile>
-              <Tile title="Divider" spec="divider.svg, 1px · footer">
-                <img src="/assets/icons/divider.svg" alt="" width={1280} height={1} className="h-px w-3/4" />
+              <Tile title="Header-ийн доод шугам" spec="1px black 8% (box-shadow) · гүйлгэсэн header">
+                <span className="absolute inset-x-0 top-8 h-10 bg-white shadow-[0_1px_0_rgba(0,0,0,0.08)]" />
+              </Tile>
+              <Tile title="Footer-ийн хуваагч" spec="divider.svg, 1px · invert-ээр хар дээр цагаан 15%">
+                <span className="absolute inset-0 bg-black" />
+                <img src="/assets/icons/divider.svg" alt="" width={1280} height={1} className="relative h-px w-3/4 invert" />
+              </Tile>
+              <Tile title="Term-ийн доогуур зураас" spec="цэгэн, өнгөний 50%, offset 4px · тайлбартай үг">
+                <span className="underline decoration-current/50 decoration-dotted underline-offset-4">Supercharger</span>
+              </Tile>
+              <Tile title="Tooltip-ын хүрээ" spec="1px white 25% (ring) · хар footer дээр ялгагдана">
+                <span className="absolute inset-0 bg-black" />
+                <span className="relative rounded-card bg-black px-3 py-2 text-small text-white ring-1 ring-white/25">Тайлбар</span>
               </Tile>
               <Tile title="Товчны хүрээ" spec="1px, өндрөө хадгалахаар padding 1px-ээр багассан">
                 <Button href="#stroke">Захиалах</Button>
@@ -439,16 +461,32 @@ export default function StyleguidePage() {
           <SgSection id="shade" number={number("shade")} title="Сүүдэр, бүрхүүл">
             <SgH3>Бүрхүүл</SgH3>
             <ul className={tileGrid}>
+              <Tile title="ModelPanel-ийн градиент" spec="black 60% → 5% → 50%, дээрээс доош · нүүрний бүтэн дэлгэцийн хэсэг">
+                <Image src="/assets/images/model-3.png" alt="" fill sizes="320px" className="object-cover" />
+                <span aria-hidden className="absolute inset-0 bg-linear-to-b from-black/60 via-black/5 to-black/50" />
+                <span className="relative z-1 font-medium text-white">Model 3</span>
+              </Tile>
               <Tile title="has-overlay" spec="#000 · 40% · Hero, загварын карт">
                 <span className="has-overlay absolute inset-0">
-                  <Image src="/assets/images/hero.jpg" alt="" fill sizes="320px" className="object-cover" />
+                  <Image src="/assets/images/model-y/hero.jpg" alt="" fill sizes="320px" className="object-cover" />
                 </span>
                 <span className="relative z-1 font-medium text-white">Зураг дээрх бичвэр</span>
               </Tile>
+              <Tile title="Header · зураг дээр" spec="тунгалаг, бичвэр цагаан · гүйлгэхэд цагаан дэвсгэр">
+                <Image src="/assets/images/model-y.jpg" alt="" fill sizes="320px" className="object-cover" />
+                <span className="absolute inset-x-0 top-0 flex h-10 items-center justify-between px-4 text-[12px] text-white">
+                  <img src="/assets/icons/logo-tesla-wordmark.svg" alt="" width={342} height={35} className="h-auto w-16 brightness-0 invert" />
+                  Цэс
+                </span>
+                <span className="absolute inset-x-0 bottom-0 flex h-10 items-center justify-between bg-white px-4 text-[12px] text-black shadow-[0_-1px_0_rgba(0,0,0,0.08)]">
+                  <img src="/assets/icons/logo-tesla-wordmark.svg" alt="" width={342} height={35} className="h-auto w-16" />
+                  Цэс
+                </span>
+              </Tile>
               <Tile title="onImage товч" spec="#fff · 20% · зураг дээрх хоёрдогч товч">
-                <Image src="/assets/images/hero.jpg" alt="" fill sizes="320px" className="object-cover" />
+                <Image src="/assets/images/model-y.jpg" alt="" fill sizes="320px" className="object-cover" />
                 <span className="relative z-1">
-                  <Button href="#shade" variant="onImage">Үзүүлэлт харах</Button>
+                  <Button href="#shade" variant="onImage">Дэлгэрэнгүй</Button>
                 </span>
               </Tile>
               <Tile title="--color-black-5" spec="#000 · 5% · хоёрдогч товч">
@@ -457,7 +495,10 @@ export default function StyleguidePage() {
             </ul>
 
             <SgH3>Сүүдэр</SgH3>
-            <SgNote>Сайтад drop shadow хэрэглэдэггүй. Гүн мэдрэмжийг зураг, бүрхүүл, саарал гадаргуу өгдөг.</SgNote>
+            <SgNote>
+              Сайтад drop shadow хэрэглэдэггүй. Гүн мэдрэмжийг зураг, бүрхүүл, саарал гадаргуу өгдөг. Header-ийн{" "}
+              <code>box-shadow</code> нь сүүдэр биш, 1px шугам.
+            </SgNote>
           </SgSection>
 
           <SgSection id="icons" number={number("icons")} title="Дүрс">
@@ -495,7 +536,7 @@ export default function StyleguidePage() {
               <Button href="#components" size="sm">Туршилтын жолоодлого</Button>
             </DemoBox>
             <div className="has-overlay mb-4 flex flex-wrap gap-4 overflow-hidden rounded-card p-6 md:p-8">
-              <Image src="/assets/images/hero.jpg" alt="" fill sizes="1000px" className="object-cover" />
+              <Image src="/assets/images/model-y.jpg" alt="" fill sizes="1000px" className="object-cover" />
               <div className="relative z-1 flex flex-wrap gap-4">
                 <Button href="#components">Захиалах</Button>
                 <Button href="#components" variant="onImage">Үзүүлэлт харах</Button>

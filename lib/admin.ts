@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { hasSupabase } from "./supabase/env";
 import { createClient } from "./supabase/server";
 
 /**
@@ -7,6 +8,9 @@ import { createClient } from "./supabase/server";
  * байхгүй бол нэвтрэх хуудас руу шилжүүлнэ. Өгөгдлийн сангийн RLS мөн адил шалгадаг.
  */
 export async function requireAdmin() {
+  // Supabase тохируулаагүй бол 500 алдаа өгөхийн оронд нэвтрэх хуудсан дээр тайлбар харуулна
+  if (!hasSupabase) redirect("/admin/login");
+
   const supabase = await createClient();
   const { data } = await supabase.auth.getClaims();
   const email = typeof data?.claims?.email === "string" ? data.claims.email.toLowerCase() : null;

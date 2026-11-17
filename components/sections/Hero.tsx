@@ -26,7 +26,7 @@ export function Hero({ variant = "home", image, title, titleAs: Title = "h1", de
     <section className={cn("has-overlay flex justify-center overflow-hidden px-page", variants[variant])}>
       <Image src={image} alt="" fill sizes="100vw" preload={preload} className="object-cover" />
       <div className="relative z-1 flex h-max w-full max-w-large flex-col items-center gap-8">
-        <div className="flex flex-col gap-6 text-center text-white">
+        <div className="flex flex-col gap-4 text-center text-white">
           <Title className="heading-1">{title}</Title>
           <p className="text-medium">{description}</p>
         </div>

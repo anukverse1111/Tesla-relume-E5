@@ -33,7 +33,7 @@ type ButtonProps = {
 
 export function Button({ href, variant = "primary", size = "md", chevron = false, className: extra, children }: ButtonProps) {
   const className = cn(
-    "group/btn inline-flex items-center justify-center border border-transparent font-medium whitespace-nowrap",
+    "group/btn inline-flex items-center justify-center rounded-control border border-transparent font-medium whitespace-nowrap",
     variants[variant],
     variant !== "link" && sizes[size],
     extra,

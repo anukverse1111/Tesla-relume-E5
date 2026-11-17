@@ -54,7 +54,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                     alt=""
                     width={120}
                     height={80}
-                    className={`h-20 w-30 flex-none rounded-[4px] object-cover ${row.is_published ? "" : "opacity-40 grayscale"}`}
+                    className={`h-20 w-30 flex-none rounded-control object-cover ${row.is_published ? "" : "opacity-40 grayscale"}`}
                   />
                   <div className="flex min-w-px flex-col gap-1">
                     <div className="flex flex-wrap items-center gap-2">

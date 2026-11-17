@@ -65,22 +65,25 @@ export default async function HomePage() {
           title="Монголын нөхцөлд"
           description="Улаанбаатарын хүйтэн өвөл, гэрийн цэнэглэлт, үнийн талаар хамгийн их асуудаг асуултууд."
         />
-        <TipCards items={mongoliaTips} />
-        <p className="text-small text-white/70">
-          Эх сурвалж:{" "}
-          <a href="https://www.tesla.com/support/winter-driving-tips" className="underline">
-            Tesla Winter Driving Tips
-          </a>
-          ,{" "}
-          <a href="https://www.tesla.com/home-charging" className="underline">
-            Tesla Home Charging
-          </a>
-          ,{" "}
-          <a href={usdToMnt.url} className="underline">
-            {usdToMnt.source} ({usdToMnt.date})
-          </a>
-          . Миль, цагийн утгыг км руу хөрвүүлж бүхэлчилсэн.
-        </p>
+        {/* Эх сурвалж нь картуудад хамаарах тул тэдэнтэй ойрхон (16px), өөрийн хүрээтэй */}
+        <div className="flex flex-col gap-4">
+          <TipCards items={mongoliaTips} />
+          <p className="rounded-control px-4 py-3 text-small text-white/70 ring-1 ring-white/12 ring-inset">
+            Эх сурвалж:{" "}
+            <a href="https://www.tesla.com/support/winter-driving-tips" className="underline">
+              Tesla Winter Driving Tips
+            </a>
+            ,{" "}
+            <a href="https://www.tesla.com/home-charging" className="underline">
+              Tesla Home Charging
+            </a>
+            ,{" "}
+            <a href={usdToMnt.url} className="underline">
+              {usdToMnt.source} ({usdToMnt.date})
+            </a>
+            . Миль, цагийн утгыг км руу хөрвүүлж бүхэлчилсэн.
+          </p>
+        </div>
       </Section>
 
       <Section id="test-drive">
@@ -124,8 +127,7 @@ export default async function HomePage() {
         </Section>
       )}
 
-      {/* Figma дахь хоосон 27px гарчиг ба 80px зайг хадгална */}
-      <Section gray className="md:pt-[calc(var(--spacing-section-lg)+27px+80px)]">
+      <Section gray>
         <Reveal className="flex flex-col gap-8 lg:flex-row">
           <PromoCard
             title="Онцгой урамшуулал"

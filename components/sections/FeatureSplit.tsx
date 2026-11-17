@@ -43,7 +43,7 @@ export function FeatureSplit({ tagline, title, image, imageAlt, reverse, stats, 
             </span>
             {tagline}
           </p>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             <h2 className="heading-2">{title}</h2>
             {children}
           </div>

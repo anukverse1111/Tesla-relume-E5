@@ -405,8 +405,10 @@ export default function StyleguidePage() {
             <ul className="grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(180px,1fr))]">
               {[
                 ["--radius-card", "rounded-card", "Карт, зураг, хүснэгт, tooltip"],
-                ["0", "rounded-none", "Товч, сум, Hero, ModelPanel, header"],
-                ["50%", "rounded-full", "Slider-ийн цэг"],
+                ["--radius-panel", "rounded-panel", "Саарал хэсгийн самбар"],
+                ["--radius-control", "rounded-control", "Товч, оролтын талбар, жижиг хүрээ"],
+                ["0", "rounded-none", "Дэлгэцийн ирмэг хүртэл сунасан Hero, ModelPanel, header, footer"],
+                ["50%", "rounded-full", "Slider-ийн цэг, сум, pill шошго"],
               ].map(([name, shape, usage]) => (
                 <li key={name} className="grid content-start gap-1">
                   <span className={`mb-2 h-28 border border-black/15 bg-gray ${shape}`} />

@@ -2,7 +2,7 @@
 
 import { Children, useState, type ReactNode } from "react";
 
-const arrowClass = "cursor-pointer border border-surface bg-gray p-[11px]";
+const arrowClass = "cursor-pointer rounded-full border border-surface bg-gray p-[11px]";
 
 export function ModelSlider({ children }: { children: ReactNode }) {
   const count = Children.count(children);

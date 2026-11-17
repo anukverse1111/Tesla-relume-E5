@@ -5,15 +5,15 @@ import { signOut } from "@/app/admin/actions";
 import { cn } from "@/lib/cn";
 
 export const inputClass =
-  "w-full rounded-[4px] border border-black/20 bg-white px-3 py-2 text-regular outline-none focus:border-tesla-red-dark focus:ring-2 focus:ring-tesla-red-dark/20";
+  "w-full rounded-control border border-black/20 bg-white px-3 py-2 text-regular outline-none focus:border-tesla-red-dark focus:ring-2 focus:ring-tesla-red-dark/20";
 
 export const buttonClass = {
   primary:
-    "inline-flex cursor-pointer items-center justify-center gap-2 btn-red border px-[19px] py-[7px] font-medium disabled:cursor-wait disabled:opacity-60",
+    "inline-flex cursor-pointer items-center justify-center gap-2 rounded-control btn-red border px-[19px] py-[7px] font-medium disabled:cursor-wait disabled:opacity-60",
   secondary:
-    "inline-flex cursor-pointer items-center justify-center gap-2 border border-transparent bg-black-5 px-[19px] py-[7px] font-medium transition-opacity hover:opacity-80 disabled:cursor-wait disabled:opacity-60",
+    "inline-flex cursor-pointer items-center justify-center gap-2 rounded-control border border-transparent bg-black-5 px-[19px] py-[7px] font-medium transition-opacity hover:opacity-80 disabled:cursor-wait disabled:opacity-60",
   ghost:
-    "inline-flex cursor-pointer items-center justify-center gap-1 rounded-[4px] px-2 py-1 text-small font-medium hover:bg-black-5 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent",
+    "inline-flex cursor-pointer items-center justify-center gap-1 rounded-control px-2 py-1 text-small font-medium hover:bg-black-5 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent",
 };
 
 export function AdminHeader({ email }: { email?: string }) {

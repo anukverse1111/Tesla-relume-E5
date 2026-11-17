@@ -15,7 +15,8 @@ const legalLinks = ["Нууцлал", "Үйлчилгээний нөхцөл", "
 
 export function Footer() {
   return (
-    <footer className="bg-black px-page py-section-md text-white">
+    // Нимгэн дээд хүрээ: бараан хуудасны төгсгөл ба footer-ийг ялгана (дүрс ба дэвсгэр)
+    <footer className="border-t border-white/10 bg-black px-page py-section-md text-white">
       <div className="mx-auto flex w-full max-w-site flex-col items-center gap-12 md:gap-20">
         <div className="flex w-full max-w-small flex-col items-center gap-8">
           <Logo inverted className="w-24 justify-start md:w-[120px] md:justify-center" />

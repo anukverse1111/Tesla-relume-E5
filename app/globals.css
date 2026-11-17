@@ -48,7 +48,13 @@
   --container-large: 768px;
   --container-small: 480px;
 
-  --radius-card: 8px;
+  /*
+   * Радиусын шатлал: гадна хүрээ илүү бөөрөнхий, дотор хүрээ бага (panel → card → control).
+   * Хурц өнцөг ашиглахгүй. Зөвхөн дэлгэцийн ирмэг хүртэл сунасан hero, header, footer өнцөггүй.
+   */
+  --radius-panel: 24px;
+  --radius-card: 16px;
+  --radius-control: 10px;
 
   --default-transition-timing-function: ease;
 
@@ -97,6 +103,9 @@
       --text-h2: 36px;
       --text-h3: 28px;
       --text-h5: 21px;
+      --radius-panel: 32px;
+      --radius-card: 20px;
+      --radius-control: 12px;
       --spacing-page: 32px;
       --spacing-section-lg: 80px;
       --spacing-section-md: 64px;
@@ -200,6 +209,8 @@
   --color-tesla-red-dark: #f26472;
   /* glow-card-ийн гэрэл бараан гадаргуу дээр зөөлөн */
   --spot-color: rgba(255, 255, 255, 0.07);
+  /* Самбаруудын margin гадагш "нэвчиж" дэвсгэргүй зай үүсгэхгүй */
+  display: flow-root;
   background: #1f1f1f;
   color: var(--color-white);
 
@@ -220,6 +231,7 @@
   --color-tesla-red: #f26472;
   --color-tesla-red-dark: #f26472;
   --spot-color: rgba(255, 255, 255, 0.07);
+  display: flow-root;
   background:
     linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.035) 45%, transparent 70%),
     linear-gradient(180deg, #1d1e21 0%, #131416 50%, #1b1c1f 100%);

@@ -38,7 +38,7 @@ export function Term({ id, children }: { id: GlossaryKey; children?: ReactNode }
         id={tooltipId}
         className={cn(
           // ring: хар footer дээр гарахад ирмэг нь ялгагдана
-          "pointer-events-none invisible fixed inset-x-4 bottom-4 z-60 rounded-card bg-black px-3 py-2 ring-1 ring-white/25 text-left text-small leading-[1.5] font-normal tracking-normal text-white opacity-0 transition-opacity group-focus-within/term:visible group-focus-within/term:opacity-100 group-hover/term:visible group-hover/term:opacity-100 motion-reduce:transition-none",
+          "pointer-events-none invisible fixed inset-x-4 bottom-4 z-60 rounded-control bg-black px-3 py-2 ring-1 ring-white/25 text-left text-small leading-[1.5] font-normal tracking-normal text-white opacity-0 transition-opacity group-focus-within/term:visible group-focus-within/term:opacity-100 group-hover/term:visible group-hover/term:opacity-100 motion-reduce:transition-none",
           "md:absolute md:inset-x-auto md:bottom-full md:z-30 md:mb-2 md:w-max md:max-w-[18rem]",
           alignRight ? "md:right-0" : "md:left-0",
         )}

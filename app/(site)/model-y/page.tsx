@@ -42,6 +42,7 @@ export default function ModelYPage() {
         <SectionTitle title="Онцлох үзүүлэлт" description="Model Y-ийн суурь хувилбарын гол тоонууд" />
         <Stats
           columns={3}
+          framed
           items={[
             { value: "517 км", label: <>Хүрэх зай, <Term id="epa" /> тооцоо (321 миль)</> },
             { value: "5 од", label: <>Аюулгүй байдлын үнэлгээ<sup>1</sup></> },

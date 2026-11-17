@@ -9,7 +9,7 @@ export const inputClass =
 
 export const buttonClass = {
   primary:
-    "inline-flex cursor-pointer items-center justify-center gap-2 border border-tesla-red bg-tesla-red px-[19px] py-[7px] font-medium text-white transition-opacity hover:opacity-80 disabled:cursor-wait disabled:opacity-60",
+    "inline-flex cursor-pointer items-center justify-center gap-2 btn-red border px-[19px] py-[7px] font-medium disabled:cursor-wait disabled:opacity-60",
   secondary:
     "inline-flex cursor-pointer items-center justify-center gap-2 border border-transparent bg-black-5 px-[19px] py-[7px] font-medium transition-opacity hover:opacity-80 disabled:cursor-wait disabled:opacity-60",
   ghost:

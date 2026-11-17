@@ -319,8 +319,8 @@ export default function StyleguidePage() {
             <SgH3>Мөрийн өндөр</SgH3>
             <ul>
               {[
-                ["1.2", "heading-1, 2, 3"],
-                ["1.4", "heading-5"],
+                ["1.1 · 1.15 · 1.2", "heading-1 · 2 · 3"],
+                ["1.3", "heading-5"],
                 ["1.5", "Бичвэр, тайлбар"],
               ].map(([value, usage]) => (
                 <li key={value} className="grid items-center gap-2 border-b border-black/15 py-4 md:grid-cols-[220px_minmax(0,1fr)] md:gap-5">
@@ -554,7 +554,7 @@ export default function StyleguidePage() {
               Stats · <code>components/ui/Stats.tsx</code>
             </SgH3>
             <SgNote>
-              <code>valueSize</code>: h2 | h5, <code>columns</code>: 2 | 3. Гурван багана утсан дээр нэг багана болно.
+              <code>valueSize</code>: h3 | h5, <code>columns</code>: 2 | 3. Гурван багана утсан дээр нэг багана болно.
             </SgNote>
             <DemoBox>
               <Stats items={[{ value: "30,864", label: "Supercharger станц" }, { value: "241", label: "Destination Charger станц" }]} />

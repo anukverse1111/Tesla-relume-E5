@@ -10,17 +10,28 @@
   --font-roboto: var(--next-roboto), sans-serif;
 
   --color-gray: #f4f1ee;
-  /* Дүүргэлт, том бичвэр. Цагаан бичвэртэй 4.7:1 */
-  --color-tesla-red: #e31937;
-  /* Жижиг бичвэр, focus ring. Цагаан ба саарал дээр 5:1-ээс дээш */
-  --color-tesla-red-dark: #c8102e;
+  /* Саарал хэсэг доторх карт */
+  --color-surface: #ffffff;
+  /* Дүүргэлт, том бичвэр. Графит, мөнгөлөг өнгөтэй зохицох cherry улаан. Цагаан бичвэртэй 5:1 */
+  --color-tesla-red: #cf3044;
+  /* Жижиг бичвэр, focus ring. Цагаан ба саарал дээр 5.6:1-ээс дээш */
+  --color-tesla-red-dark: #b8202f;
+  /* Улаан товчны градиент (btn-red). Хамгийн цайвар цэг дээр ч цагаан бичвэртэй 4.7:1 */
+  --color-red-top: #d63447;
+  --color-red-bottom: #a51f30;
+  --color-red-glow: rgba(214, 52, 71, 0.55);
   --color-black-5: rgba(0, 0, 0, 0.05);
 
   --text-*: initial;
-  --text-h1: 44px;
-  --text-h2: 36px;
-  --text-h3: 32px;
-  --text-h5: 24px;
+  /*
+   * Гарчгийн масштаб: түвшин бүр ~1.4 дахин томорно (компьютер дээр 22 → 32 → 44 → 64).
+   * h1 hero, h2 хэсгийн гарчиг, h3 тоо ба том картын гарчиг, h5 картын гарчиг.
+   * Тоо (Stats) хэсгийнхээ гарчгаас үргэлж нэг түвшин бага байна.
+   */
+  --text-h1: 40px;
+  --text-h2: 30px;
+  --text-h3: 24px;
+  --text-h5: 20px;
   --text-medium: 18px;
   --text-regular: 16px;
   --text-small: 14px;
@@ -40,16 +51,52 @@
   --radius-card: 8px;
 
   --default-transition-timing-function: ease;
+
+  /* HeroCarousel-ийн явцын зураас. Хугацааг компонент inline style-аар өгнө */
+  --animate-progress: progress 6s linear forwards;
+
+  /* TipCards дэлгэцэнд орохдоо доороос гарч ирнэ */
+  --animate-fade-up: fade-up 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  /* transform биш translate: дууссаны дараа картын hover хазайлтыг (transform) дарахгүй */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      translate: 0 24px;
+    }
+    to {
+      opacity: 1;
+      translate: none;
+    }
+  }
+
+  @keyframes sheen {
+    from {
+      translate: -120% 0;
+    }
+    to {
+      translate: 120% 0;
+    }
+  }
+
+  @keyframes progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
 }
 
 @layer base {
   /* Figma-д зөвхөн 1440px загвар байгаа тул доорх хэмжээсүүдийг дасан зохицуулав */
   @media (width >= 48rem) {
     :root {
-      --text-h1: 56px;
-      --text-h2: 44px;
-      --text-h3: 36px;
-      --text-h5: 28px;
+      --text-h1: 52px;
+      --text-h2: 36px;
+      --text-h3: 28px;
+      --text-h5: 21px;
       --spacing-page: 32px;
       --spacing-section-lg: 80px;
       --spacing-section-md: 64px;
@@ -59,9 +106,10 @@
 
   @media (width >= 62rem) {
     :root {
-      --text-h1: 72px;
-      --text-h2: 52px;
-      --text-h3: 44px;
+      --text-h1: 64px;
+      --text-h2: 44px;
+      --text-h3: 32px;
+      --text-h5: 22px;
       --spacing-page: 64px;
       --spacing-section-lg: 112px;
       --spacing-section-md: 80px;
@@ -75,6 +123,11 @@
     line-height: 1.5;
     overflow-wrap: break-word;
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* Догол мөрийн сүүлийн мөрөнд ганц үг үлдээхгүй */
+  p {
+    text-wrap: pretty;
   }
 
   img {
@@ -100,19 +153,25 @@
   }
 }
 
-/* Ижил хэв маяг h1, h2, p зэрэг өөр tag дээр хэрэглэгддэг тул utility хэлбэртэй */
+/*
+ * Ижил хэв маяг h1, h2, p зэрэг өөр tag дээр хэрэглэгддэг тул utility хэлбэртэй.
+ * Том гарчиг илүү нягт мөр, үсгийн зайтай. text-wrap: balance нь урт монгол үгтэй гарчгийг
+ * мөрүүдэд тэнцүү хувааж, сүүлийн мөрөнд ганц үг үлдээхгүй.
+ */
 @utility heading-1 {
   font-size: var(--text-h1);
   font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-wrap: balance;
 }
 
 @utility heading-2 {
   font-size: var(--text-h2);
   font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  text-wrap: balance;
 }
 
 @utility heading-3 {
@@ -120,13 +179,439 @@
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.2;
+  text-wrap: balance;
 }
 
 @utility heading-5 {
   font-size: var(--text-h5);
   font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.4;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+/* Бараан саарал хуудас: доторх gray/surface/black-5 өнгийг бараан хувилбараар солино */
+@utility theme-dark {
+  --color-gray: #2b2b2b;
+  --color-surface: #3a3a3a;
+  --color-black-5: rgba(255, 255, 255, 0.12);
+  /* Бараан дэвсгэр дээрх улаан бичвэр (#1f1f1f, #2b2b2b дээр 4.6:1-ээс дээш). Товч btn-red өөрийн өнгөтэй тул өөрчлөгдөхгүй */
+  --color-tesla-red: #f26472;
+  --color-tesla-red-dark: #f26472;
+  /* glow-card-ийн гэрэл бараан гадаргуу дээр зөөлөн */
+  --spot-color: rgba(255, 255, 255, 0.07);
+  background: #1f1f1f;
+  color: var(--color-white);
+
+  /* Хар өнгөтэй SVG сумыг (ModelSlider) цагаан болгоно. Button-ий chevron currentColor тул хамаарахгүй */
+  & img[src^="/assets/icons/arrow"] {
+    filter: invert(1);
+  }
+}
+
+/*
+ * Хар бараан мөнгөлөг хуудас (Model Y). theme-dark-аас илүү хүйтэн, металл өнгөтэй:
+ * дэвсгэр нь графит градиент, саарал хэсгүүд дээр зөөлөн "brushed metal" гялбаа.
+ */
+@utility theme-graphite {
+  --color-gray: #2a2c30;
+  --color-surface: #383b40;
+  --color-black-5: rgba(255, 255, 255, 0.12);
+  --color-tesla-red: #f26472;
+  --color-tesla-red-dark: #f26472;
+  --spot-color: rgba(255, 255, 255, 0.07);
+  background:
+    linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.035) 45%, transparent 70%),
+    linear-gradient(180deg, #1d1e21 0%, #131416 50%, #1b1c1f 100%);
+  color: var(--color-white);
+
+  & .bg-gray {
+    background-image: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.07) 0%,
+      transparent 35%,
+      rgba(255, 255, 255, 0.04) 65%,
+      transparent 100%
+    );
+  }
+
+  & img[src^="/assets/icons/arrow"] {
+    filter: invert(1);
+  }
+}
+
+/*
+ * Цайвар саарал мөнгөлөг товч. btn-red-тэй ижил micro animation (өргөгдөх, гялбаа, шахагдах),
+ * гэрэл нь улаан биш цагаан. Бараан бичвэртэй, хамгийн бараан цэг дээр ч 9:1-ээс дээш.
+ */
+@utility btn-silver {
+  background: linear-gradient(180deg, #f4f5f7 0%, #d5d8dc 55%, #b9bdc3 100%);
+  border-color: transparent;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.35);
+  color: #111;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  transition:
+    translate 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    scale 150ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 300ms ease;
+
+  &::before {
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.9) 50%, transparent 70%);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    translate: -120% 0;
+    z-index: -1;
+  }
+
+  &:focus-visible {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+      0 10px 28px -8px rgba(255, 255, 255, 0.45);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        0 12px 30px -8px rgba(255, 255, 255, 0.45);
+      translate: 0 -2px;
+    }
+
+    &:hover::before {
+      animation: sheen 800ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+  }
+
+  &:active {
+    scale: 0.97;
+    translate: 0 0;
+    transition-duration: 80ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: box-shadow 300ms ease;
+
+    &:hover,
+    &:active {
+      scale: 1;
+      translate: 0 0;
+    }
+
+    &:hover::before {
+      animation: none;
+    }
+  }
+}
+
+/*
+ * Reveal: дэлгэцэнд орохдоо шууд хүүхдүүд 100ms зайтай доороос гарч ирнэ.
+ * fill-mode backwards: дууссаны дараа translate-ийг барихгүй тул хүүхдийн өөрийн hover хөдөлгөөнийг дарахгүй.
+ */
+@utility reveal {
+  &[data-inview="false"] > * {
+    opacity: 0;
+  }
+
+  &[data-inview="true"] > * {
+    animation: fade-up 800ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+
+  &[data-inview="true"] > :nth-child(2) {
+    animation-delay: 100ms;
+  }
+
+  &[data-inview="true"] > :nth-child(3) {
+    animation-delay: 200ms;
+  }
+
+  &[data-inview="true"] > :nth-child(n + 4) {
+    animation-delay: 300ms;
+  }
+
+  /* Stats-ийн металл зураас зүүнээс баруун тийш зурагдана */
+  & .stat-line {
+    transform-origin: left;
+    transition: scale 1200ms cubic-bezier(0.16, 1, 0.3, 1) 300ms;
+  }
+
+  &[data-inview="false"] .stat-line {
+    scale: 0 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &[data-inview] > * {
+      animation: none;
+      opacity: 1;
+    }
+
+    &[data-inview] .stat-line {
+      scale: 1;
+      transition: none;
+    }
+  }
+}
+
+/* ScrollZoom: --enter (0–1) scroll-той шууд холбоотой тул transition тавихгүй */
+@utility scroll-zoom {
+  & .scroll-zoom-media {
+    scale: calc(1.15 - var(--enter, 1) * 0.15);
+    will-change: scale;
+  }
+}
+
+/*
+ * Хулганы ард гадаргуу гэрэлтэнэ (HoverSurface --spot-x/y өгнө). z-index -1 тул зөвхөн дэвсгэр дээр
+ * тусч, бичвэр, зургийг цайруулахгүй.
+ */
+@utility glow-card {
+  isolation: isolate;
+  position: relative;
+
+  &::after {
+    background: radial-gradient(circle 480px at var(--spot-x, 50%) var(--spot-y, 50%), var(--spot-color, rgba(255, 255, 255, 0.6)), transparent 70%);
+    border-radius: inherit;
+    content: "";
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity 400ms ease;
+    z-index: -1;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+}
+
+/*
+ * Хулганы ард дагах гэрэл. --spot-x, --spot-y-ийг HeroCarousel pointermove дээр өгнө.
+ * Гэрлийн төв тодорч, ирмэг нь бага зэрэг бараандана. z-index 0 тул зургийн дээр, бичвэрийн (z-1) доор.
+ */
+@utility spotlight {
+  &::after {
+    background:
+      radial-gradient(circle 360px at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255, 255, 255, 0.16), transparent 70%),
+      radial-gradient(circle 900px at var(--spot-x, 50%) var(--spot-y, 50%), transparent 35%, rgba(0, 0, 0, 0.3));
+    content: "";
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity 400ms ease;
+    z-index: 0;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+}
+
+/*
+ * Мөнгөлөг саарал карт (TipCards). Бараан бичвэртэй, хамгийн бараан цэг дээр ч 8:1-ээс дээш.
+ * --rx, --ry (хазайлт), --spot-x, --spot-y (гэрэл)-ийг компонент pointermove дээр өгнө.
+ * ::before — hover үед гүйх металл гялбаа, ::after — хулганы ард тусах гэрэл.
+ * Агуулга z-1 тул хоёулангийнх нь дээр байна.
+ */
+@utility silver-card {
+  background: linear-gradient(135deg, #eceef0 0%, #c4c8cd 30%, #f5f6f7 52%, #b3b8be 76%, #dcdfe2 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+    0 1px 2px rgba(0, 0, 0, 0.35);
+  color: #111;
+  /* Мөнгөлөг (цайвар) гадаргуу тул theme-dark-ийн цайвар улааныг бараан улаанаар буцаана */
+  --color-tesla-red-dark: #b8202f;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+  transition:
+    transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 300ms ease;
+
+  &::before,
+  &::after {
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+  }
+
+  &::before {
+    background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.75) 50%, transparent 65%);
+    translate: -120% 0;
+  }
+
+  &::after {
+    background: radial-gradient(circle 240px at var(--spot-x, 50%) var(--spot-y, 0%), rgba(255, 255, 255, 0.6), transparent 70%);
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      --lift: -6px;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+        0 22px 44px -14px rgba(0, 0, 0, 0.75);
+    }
+
+    &:hover::before {
+      animation: sheen 900ms ease forwards;
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+    transition: none;
+
+    &:hover::before {
+      animation: none;
+    }
+  }
+}
+
+/*
+ * ModelStack. --enter (орж ирэлт), --cover (дарагдалт)-ыг компонент scroll дээр 0–1 утгаар өгнө.
+ * --depth: доор нь хэдэн карт давхарлагдах вэ. Гүн карт илүү жижгэрнэ.
+ * Утгууд scroll-той шууд холбоотой тул transition тавихгүй (тавивал хоцорч, жигд бус болно).
+ */
+@utility stack-item {
+  & .stack-card {
+    border-radius: var(--radius-card);
+    position: relative;
+    transform: perspective(1400px) rotateX(calc(var(--cover, 0) * 5deg))
+      scale(calc(1 - var(--cover, 0) * (0.03 + var(--depth, 0) * 0.025)));
+    transform-origin: 50% 0;
+    will-change: transform;
+  }
+
+  /* Дарагдсан карт бараан болно */
+  & .stack-card::after {
+    background: #000;
+    border-radius: inherit;
+    content: "";
+    inset: 0;
+    opacity: calc(var(--cover, 0) * 0.55);
+    pointer-events: none;
+    position: absolute;
+    z-index: 2;
+  }
+
+  /* Орж ирэх үед зураг 1.15 → 1 */
+  & .stack-media {
+    scale: calc(1.15 - var(--enter, 1) * 0.15);
+    will-change: scale;
+  }
+}
+
+/*
+ * Улаан товч. Micro animation:
+ * - hover: 2px өргөгдөж, улаан гэрэл (glow) тусч, металл гялбаа гүйнэ
+ * - дарах: 0.97 болж шахагдана
+ * - keyboard focus: hover-тэй ижил гэрэлтэнэ
+ * Гялбаа (::before) z-index -1 тул бичвэрийн доор, дэвсгэрийн дээр байна.
+ */
+@utility btn-red {
+  background: linear-gradient(180deg, var(--color-red-top), var(--color-red-bottom));
+  border-color: transparent;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 0 0 0 var(--color-red-glow);
+  color: #fff;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  transition:
+    translate 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    scale 150ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 300ms ease,
+    filter 300ms ease;
+
+  &::before {
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    translate: -120% 0;
+    z-index: -1;
+  }
+
+  &:focus-visible {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+      0 10px 28px -8px var(--color-red-glow);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+        0 12px 30px -8px var(--color-red-glow);
+      filter: saturate(1.1) brightness(1.05);
+      translate: 0 -2px;
+    }
+
+    &:hover::before {
+      animation: sheen 800ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+  }
+
+  &:active {
+    scale: 0.97;
+    translate: 0 0;
+    transition-duration: 80ms;
+  }
+
+  &:disabled {
+    box-shadow: none;
+    filter: none;
+    scale: 1;
+    translate: 0 0;
+  }
+
+  &:disabled::before {
+    animation: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: box-shadow 300ms ease;
+
+    &:hover,
+    &:active {
+      scale: 1;
+      translate: 0 0;
+    }
+
+    &:hover::before {
+      animation: none;
+    }
+  }
 }
 
 /* Зургийн дээрх 40% бараан давхарга */

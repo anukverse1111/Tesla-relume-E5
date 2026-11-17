@@ -1,6 +1,6 @@
 import { specColumns, specRows } from "@/data/model-y-specs";
 
-const cell = "border-b border-black/15 px-6 py-4 align-top";
+const cell = "border-b border-current/15 px-6 py-4 align-top";
 
 export function SpecTable() {
   return (
@@ -8,7 +8,7 @@ export function SpecTable() {
       tabIndex={0}
       role="region"
       aria-label="Хувилбаруудын харьцуулсан хүснэгт"
-      className="w-full overflow-x-auto rounded-card bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tesla-red-dark"
+      className="w-full overflow-x-auto rounded-card bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tesla-red-dark"
     >
       <table className="w-full min-w-[880px] text-left">
         <thead>

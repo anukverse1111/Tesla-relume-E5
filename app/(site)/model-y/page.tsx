@@ -22,7 +22,7 @@ const designUrl = "https://www.tesla.com/modely/design";
 
 export default function ModelYPage() {
   return (
-    <>
+    <div className="theme-graphite">
       <Hero
         variant="detail"
         image="/assets/images/model-y/hero.jpg"
@@ -30,7 +30,9 @@ export default function ModelYPage() {
         description="Дунд оврын цахилгаан SUV. Нэг цэнэглэлтээр 517 км (321 миль) хүртэл явна."
         preload
       >
-        <Button href={designUrl}>Захиалах</Button>
+        <Button href={designUrl} variant="silver">
+          Захиалах
+        </Button>
         <Button href="#specs" variant="onImage">
           Үзүүлэлт харах
         </Button>
@@ -194,11 +196,13 @@ export default function ModelYPage() {
         titleAs="h2"
         description="Өөрт тохирох хувилбараа сонгоорой."
       >
-        <Button href={designUrl}>Өөрийнхөөрөө загварчлах</Button>
+        <Button href={designUrl} variant="silver">
+          Өөрийнхөөрөө загварчлах
+        </Button>
         <Button href="/#test-drive" variant="onImage">
           Туршилтын жолоодлого
         </Button>
       </Hero>
-    </>
+    </div>
   );
 }

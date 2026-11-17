@@ -2,7 +2,7 @@
 
 import { Children, useState, type ReactNode } from "react";
 
-const arrowClass = "cursor-pointer border border-white bg-gray p-[11px]";
+const arrowClass = "cursor-pointer border border-surface bg-gray p-[11px]";
 
 export function ModelSlider({ children }: { children: ReactNode }) {
   const count = Children.count(children);
@@ -30,7 +30,7 @@ export function ModelSlider({ children }: { children: ReactNode }) {
               aria-label={`${index + 1}-р карт`}
               aria-current={index === active ? "true" : undefined}
               onClick={() => go(index)}
-              className="size-2 cursor-pointer rounded-full bg-black opacity-20 transition-opacity duration-200 aria-[current=true]:bg-tesla-red aria-[current=true]:opacity-100 motion-reduce:transition-none"
+              className="size-2 cursor-pointer rounded-full bg-current opacity-20 transition-opacity duration-200 aria-[current=true]:bg-tesla-red aria-[current=true]:opacity-100 motion-reduce:transition-none"
             />
           ))}
         </div>

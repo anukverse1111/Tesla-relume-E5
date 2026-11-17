@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { CountUp } from "@/components/ui/CountUp";
 import { cn } from "@/lib/cn";
 
 export type StatItem = {
@@ -9,11 +10,12 @@ export type StatItem = {
 
 type StatsProps = {
   items: StatItem[];
-  valueSize?: "h2" | "h5";
+  /** Тоо хэсгийнхээ гарчгаас (h2) нэг түвшин бага байна: h3 үндсэн, нягт жагсаалтад h5 */
+  valueSize?: "h3" | "h5";
   columns?: 2 | 3;
 };
 
-export function Stats({ items, valueSize = "h2", columns = 2 }: StatsProps) {
+export function Stats({ items, valueSize = "h3", columns = 2 }: StatsProps) {
   const three = columns === 3;
 
   return (
@@ -26,8 +28,12 @@ export function Stats({ items, valueSize = "h2", columns = 2 }: StatsProps) {
             three ? "flex-none md:flex-[1_0_0]" : "flex-[1_0_0] wrap-anywhere",
           )}
         >
-          {/* 24px-ээс дээш тул том бичвэрийн 3:1 шаардлагыг хангана */}
-          <p className={cn("text-tesla-red", valueSize === "h2" ? "heading-2" : "heading-5")}>{item.value}</p>
+          {/* Металл зураас: Reveal дотор байвал дэлгэцэнд орохдоо зүүнээс зурагдана */}
+          <span aria-hidden className="stat-line mb-2 block h-px w-full bg-linear-to-r from-current/45 to-transparent" />
+          {/* Улаан өнгө цагаан, саарал, бараан дэвсгэр дээр 4.5:1 орчим тул 20px-ийн h5 ч уншигдана */}
+          <p className={cn("text-tesla-red tabular-nums", valueSize === "h3" ? "heading-3" : "heading-5")}>
+            <CountUp value={item.value} />
+          </p>
           <p>{item.label}</p>
         </div>
       ))}
